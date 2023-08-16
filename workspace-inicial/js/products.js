@@ -17,7 +17,7 @@ async function imprimirProductos() {
     const autos = await getJsonData(DATA_URL);
     const products = autos.products
     products.forEach(auto => {
-        container.innerHTML += `<div><h1>&raquo; MODELO: ${auto.name}</h1>  <p> &raquo; Costo: ${auto.cost}</p> <p>&raquo; Vendidos: ${auto.soldCount}</p> <img src="${auto.image}" style=""> </div>`
+        container.innerHTML += `<div><h1>&raquo; MODELO: ${auto.name}</h1>   <p> &raquo;${auto.description}</p> <p> &raquo; Costo: ${auto.currency} ${auto.cost}</p> <p>&raquo; Vendidos: ${auto.soldCount}</p> <img src="${auto.image}"> </div>`
     });
 
 }
