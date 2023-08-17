@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", function(){
+    //ACA CORROBORAMOS SI HAY ALGUN USUARIO LOGUEADO
+    let logueado = sessionStorage.getItem("user");
+    if (logueado == null) {
+        location.href= "./login.html";
+    }
+
+
     document.getElementById("autos").addEventListener("click", function() {
         localStorage.setItem("catID", 101);
         window.location = "products.html"
