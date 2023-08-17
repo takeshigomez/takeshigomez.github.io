@@ -188,3 +188,26 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+/* //////////////////////////////ESTILO DEL LOGIN////////////////////////////////////// */
+
+#formulario{
+
+  font-family: 'Bebas Neue', sans-serif;  background-color: #53C0FB;
+  display:  flex; 
+  flex-direction:  column;
+  align-items:  flex-start; 
+  padding-bottom:  20px; 
+  width:  25%; 
+  margin-left: 37%;
+  text-align: center;
+}
+#login{
+ 
+  margin-bottom: 40px;
+}
+
+
+/* //////////////////////////////ESTILO DEL LOGIN////////////////////////////////////// */
+
+

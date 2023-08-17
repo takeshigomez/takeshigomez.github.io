@@ -19,27 +19,37 @@
         background-color: rgb(248, 249, 250);
       }
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
     <main class="mt-5">
       <div class="container">
-        <form id="loginForm">
-          <h1>Login</h1>
-          <input
-            type="text"
-            id="username"
-            placeholder="Nombre de usuario"
-            required
-          />
-          <input
-            type="password"
-            id="password"
-            placeholder="Contraseña"
-            required
-          />
-          <button type="submit" id="btn">Iniciar Sesión</button>
-        </form>
+        <div id="formulario">
+          <form id="loginForm">
+            <div id="login">
+              <h1>Login</h1>
+            </div>
+            <input
+              type="text"
+              id="username"
+              placeholder="Nombre de usuario"
+              required
+            />
+            <input
+              type="password"
+              id="password"
+              placeholder="Contraseña"
+              required
+            />
+            <button type="submit" id="btn">Iniciar Sesión</button>
+          </form>
+        </div>
       </div>
     </main>
     <footer class="text-muted">
