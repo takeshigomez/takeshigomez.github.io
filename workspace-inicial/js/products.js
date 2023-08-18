@@ -13,11 +13,14 @@ async function getJsonData(url) {
         throw new Error(`Ha ocurrido un error: ${error.message}`);
     }
 }
+
+
+
 async function imprimirProductos() {
     const autos = await getJsonData(DATA_URL);
     const products = autos.products
     products.forEach(auto => {
-        container.innerHTML += `<div><h1>&raquo; MODELO: ${auto.name}</h1>   <p> &raquo;${auto.description}</p> <p> &raquo; Costo: ${auto.currency} ${auto.cost}</p> <p>&raquo; Vendidos: ${auto.soldCount}</p> <img src="${auto.image}"> </div>`
+        container.innerHTML += `<div id="productos"> <div><ul><h1> MODELO: ${auto.name}</h1>   <p> ${auto.description}</p> <p>  Costo: ${auto.currency} ${auto.cost}</p> <p>Vendidos: ${auto.soldCount}</p></ul></div> <img src="${auto.image}"></div>`
     });
 
 }
