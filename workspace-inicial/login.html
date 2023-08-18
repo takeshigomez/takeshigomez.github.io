@@ -26,31 +26,26 @@
       rel="stylesheet"
     />
   </head>
-
-  <body>
-    <main class="mt-5">
-      <div class="container">
+  <body class="bodyLogin">
+      <main class="mt-5">
+      <div id="container">
         <div id="formulario">
-          <form id="loginForm">
             <div id="login">
-              <h1>Login</h1>
+                <div class="titulo">
+                    Bienvenido
+                </div>
+                <form id="loginForm">
+                    <input type="text" id="username" name="usuario" placeholder="Usuario" required>
+                    <input type="password"  id="password" name="password" placeholder="Contraseña"required>
+                    <button type="submit" title="Ingresar"  id="btn" name="Ingresar">Login</button>
+                </form>
+                <div class="pie-form">
+                    <a href="#">¿Perdiste tu contraseña?</a>
+                    <a href="#">¿No tienes Cuenta? Registrate</a>
+                </div>
             </div>
-            <input
-              type="text"
-              id="username"
-              placeholder="Nombre de usuario"
-              required
-            />
-            <input
-              type="password"
-              id="password"
-              placeholder="Contraseña"
-              required
-            />
-            <button type="submit" id="btn">Iniciar Sesión</button>
-          </form>
         </div>
-      </div>
+    </div>
     </main>
     <footer class="text-muted">
       <div class="container">
