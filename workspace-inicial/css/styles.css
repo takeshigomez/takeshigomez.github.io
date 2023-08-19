@@ -197,7 +197,7 @@ a.custom-card:hover {
   font-size: 100%;
   color: #1b262c;
   margin: 0;
-  background-image: url(/img/mountain.jpg);
+  background-image: url(../img/mountain.jpg);
 
   
   background-repeat: no-repeat;
