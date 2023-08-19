@@ -198,6 +198,8 @@ a.custom-card:hover {
   color: #1b262c;
   margin: 0;
   background-image: url(/img/mountain.jpg);
+
+  
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
