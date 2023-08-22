@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", function(){
     if (logueado == null) {
         location.href= "./login.html";
     }
+    //
+    const container = document.getElementById("perfil")
+    container.innerHTML += logueado
 
 
     document.getElementById("autos").addEventListener("click", function() {
