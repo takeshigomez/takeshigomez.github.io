@@ -1,4 +1,8 @@
-const DATA_URL = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
+
+let categoria = localStorage.getItem("catID")
+const DATA_URL = 'https://japceibal.github.io/emercado-api/cats_products/'+ categoria + '.json';
+
+
 
 const container = document.getElementById("a")
 async function getJsonData(url) {
