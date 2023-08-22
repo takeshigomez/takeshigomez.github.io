@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function(){
     if (logueado == null) {
         location.href= "./login.html";
     }
-    //
+    //NOMBRE DE USUARIO EN LA BARRA DE NAVEGACION
     const container = document.getElementById("perfil")
     container.innerHTML += logueado
 
