@@ -1,6 +1,6 @@
 
 let categoria = localStorage.getItem("catID")
-const DATA_URL = 'https://japceibal.github.io/emercado-api/cats_products/'+ categoria + '.json';
+const DATA_URL = PRODUCTS_URL + categoria + EXT_TYPE;
 
 
 
