@@ -1,7 +1,8 @@
-let categoria = localStorage.getItem("catID")
+let categoria = localStorage.getItem("catID");
 const DATA_URL = PRODUCTS_URL + categoria + EXT_TYPE;
-const container = document.getElementById("cargaProductos")
-let products;
+const container = document.getElementById("cargaProductos");
+// se cambia productos por autos ya que esto se utiliza en imprimirProductos()
+let autos;                                                               
 
 async function getJsonData(url) {
     try {
@@ -16,7 +17,7 @@ async function getJsonData(url) {
     }
 }
 async function imprimirProductos() {
-    const autos = await getJsonData(DATA_URL);
+    autos = await getJsonData(DATA_URL);
     const products = autos.products
     products.forEach(auto => {
         container.innerHTML += `<div id="productos"> <div><ul><h1>${auto.name}</h1>   <p>${auto.description}</p> <p>${auto.currency} ${auto.cost}</p> <p>${auto.soldCount}</p></ul></div> <img src="${auto.image}"></div>`
@@ -35,49 +36,53 @@ const pcontainer = document.getElementById("perfil")
 pcontainer.innerHTML += logueado
 
 
-function precioASD(a,b){
-    return a.cost - b.cost
+function precioASD(a, b){
+    return a.cost - b.cost;
 }
-function precioDSN(a,b){
-    return b.cost - a.cost
+function precioDSN(a, b){
+    return b.cost - a.cost;
 }
-
 function relevancia(a,b){
     return(a.soldCount * -1) - (b.soldCount * -1)
 }
+
+//En lugar de products.sort, se accede desde autos.products.sort
 function ordenarASD() {
-    products.sort(precioASD())
+    autos.products.sort(precioASD);
     actualizarLista();
 }
+
 function ordenarDSN() {
-    products.sort(precioDSN());
+    autos.products.sort(precioDSN);
     actualizarLista();
 }
 
 function ordenarRelevancia() {
-    products.sort(relevancia);
+    autos.products.sort(relevancia);
     actualizarLista();
 }
-function actualizarLista(filtro = "", precioMin = 0, precioMax = Infinity) {
 
+function actualizarLista(filtro = '', precioMin = 0, precioMax = Infinity) {
     const contenedor = document.getElementById("cargaProductos");
     const resultadoBusqueda = document.getElementById('resultadoBusqueda');
-    contenedor.innerHTML = "";
+    contenedor.innerHTML = '';
     resultadoBusqueda.innerHTML = '';
     
-    products.forEach(productos =>{
-        if(
-            productos.name.toLowerCase().includes(filtro.toLowerCase) &&
-            productos.cost >= precioMin &&
-            productos.cost <= precioMax
-        ){
-            const li = document.createElement('li');
-            li.textContent = `${productos.name} - $${productos.cost} - Vendidos: ${productos.soldCount}`;
-            resultadoBusqueda.appendChild(li);
-        }
-    });
+    //En lugar de acceder desde DATA_URL (que es una URL, no un array) se accede
+    // desde autos.products, el array que tomamos desde JSON
+   autos.products.forEach((producto) => {
+       if (
+           producto.name.toLowerCase().includes(filtro.toLowerCase()) &&
+           producto.cost >= precioMin &&
+           producto.cost <= precioMax
+        ) {
+           const li = document.createElement('li');
+           li.textContent = `${producto.name} - $${producto.cost} - Vendidos: ${producto.soldCount}`;
+           resultadoBusqueda.appendChild(li);
+       }
+   });
     if(resultadoBusqueda.children.length === 0){
-        const li = document.createElement('li');
+        const ul = document.createElement('li');
         li.textContent = 'No se encontraron resultados.';
         resultadoBusqueda.appendChild(li);
     }
