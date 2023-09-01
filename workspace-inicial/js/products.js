@@ -62,36 +62,78 @@ function ordenarRelevancia() {
     actualizarLista();
 }
 
+///////////////////
 function actualizarLista(filtro = '', precioMin = 0, precioMax = Infinity) {
     const contenedor = document.getElementById("cargaProductos");
     const resultadoBusqueda = document.getElementById('resultadoBusqueda');
     contenedor.innerHTML = '';
     resultadoBusqueda.innerHTML = '';
     
-    //En lugar de acceder desde DATA_URL (que es una URL, no un array) se accede
-    // desde autos.products, el array que tomamos desde JSON
-   autos.products.forEach((producto) => {
-       if (
-           producto.name.toLowerCase().includes(filtro.toLowerCase()) &&
-           producto.cost >= precioMin &&
-           producto.cost <= precioMax
+    autos.products.forEach((producto) => {
+        if (
+            producto.name.toLowerCase().includes(filtro.toLowerCase()) &&
+            producto.cost >= precioMin &&
+            producto.cost <= precioMax
         ) {
-           const li = document.createElement('li');
-           li.textContent = `${producto.name} - $${producto.cost} - Vendidos: ${producto.soldCount}`;
-           resultadoBusqueda.appendChild(li);
-       }
-   });
-    if(resultadoBusqueda.children.length === 0){
-        const ul = document.createElement('li');
-        li.textContent = 'No se encontraron resultados.';
-        resultadoBusqueda.appendChild(li);
-    }
+            container.innerHTML += `
+                <div id="productos">
+                    <div>
+                        <ul>
+                            <h1>${producto.name}</h1>
+                            <p>${producto.description}</p>
+                            <p>${producto.currency} ${producto.cost}</p>
+                            <p>Vendidos: ${producto.soldCount}</p>
+                        </ul>
+                    </div>
+                    <img src="${producto.image}">
+                </div>`;
+        }
+    });
+    
+  //  if (resultadoBusqueda.children.length === 0) {
+    //    const li = document.createElement('li');
+      //  li.textContent = "No se encontraron resultados.";
+      //  resultadoBusqueda.appendChild(li);
+    //}
 }
+
+////////////////////
 
 
 const campoBusqueda = document.getElementById('buscar');
 const campoPrecioMin = document.getElementById('rangeFilterCountMin');
 const campoPrecioMax = document.getElementById('rangeFilterCountMax');
+const limpiar = document.getElementById('clearRangeFilter');
+
+//////////////////
+function cargarTodosLosAutos() {
+    const contenedor = document.getElementById("cargaProductos");
+    contenedor.innerHTML = ''; // Limpiar el contenido actual
+    autos.products.forEach((producto) => {
+        contenedor.innerHTML += `
+            <div id="productos">
+                <div>
+                    <ul>
+                        <h1>${producto.name}</h1>
+                        <p>${producto.description}</p>
+                        <p>${producto.currency} ${producto.cost}</p>
+                        <p>Vendidos: ${producto.soldCount}</p>
+                    </ul>
+                </div>
+                <img src="${producto.image}">
+            </div>`;
+    });
+}
+
+document.getElementById('clearRangeFilter').addEventListener('click', () => {
+    campoBusqueda.value = ''; // Limpiar el campo de búsqueda
+    campoPrecioMin.value = 0; // Restablecer el rango de precios mínimo
+    campoPrecioMax.value = ''; // Restablecer el rango de precios máximo
+    cargarTodosLosAutos(); // Cargar todos los autos sin filtro
+});
+
+
+/////////////1
 
 campoBusqueda.addEventListener('input', () => {
     const filtro = campoBusqueda.value;
