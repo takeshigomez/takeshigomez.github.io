@@ -359,11 +359,11 @@ a.custom-card:hover {
   background-color: #F4F4F4;
   justify-content: space-around;
 }
- #productos img{
+#productos img{
   height: 95%;
   padding: 10px;
 }
- #productos div{
+#productos div{
   width: 50%;
 }
 
@@ -374,3 +374,18 @@ a.custom-card:hover {
  overflow: hidden;
 }
 /* //////////////////////////////     PRODUCTOS     ////////////////////////////////////// */
+
+/* //////////////////////////////     ARTICULOS     ////////////////////////////////////// */
+
+#articulos {
+  display: inline;
+  margin: 10px;
+}
+#articulos img{
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  height: 150px;
+  padding: 10px;
+}
+
+
+/* //////////////////////////////     ARTICULOS     ////////////////////////////////////// */

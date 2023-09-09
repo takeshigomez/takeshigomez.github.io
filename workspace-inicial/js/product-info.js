@@ -1,34 +1,36 @@
 let producto = localStorage.getItem("prodID");
-const ARTICULO_URL = PRODUCT_INFO_URL + producto + EXT_TYPE;
-const container = document.getElementById("cargaProductos");
 
-let articulos;
-async function getJsonData(url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Error fetching data from ${url}: ${response.status} ${response.statusText}`);
-        }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        throw new Error(`Ha ocurrido un error: ${error.message}`);
-    }
-}
-async function imprimirArticulo() {
-    articulos = await getJsonData(ARTICULO_URL);
-    for (let i = 0; i < articulos.length; i++) {
-        const product = articulos;
-        container.innerHTML += `<div(${product.id})">
-            <div>
+
+        
+if (producto) {
+    // Construye la URL de la API con el identificador del producto
+    const ARTICULO_URL = PRODUCT_INFO_URL + producto + EXT_TYPE;
+    // Realiza una solicitud GET a la API
+    fetch(ARTICULO_URL)
+        .then(response => response.json())
+        .then(data => {
+            // Maneja la respuesta de la API y muestra la información del producto
+            const container = document.getElementById("cargaProductos");
+            container.innerHTML = `
+                <div id="aDescripcion">
                 <ul>
-                    <h1>${product.name}</h1>
-                    
+                    <li><h1>${data.name}</h1></li>
+                    <li><p>${data.description}</p></li>
+                    <li><p>${data.currency} ${producto.cost}</p></li>
+                    <li><p>Vendidos: ${data.soldCount}</p></li>
                 </ul>
-            </div>
-           
-        </div>`;
-    };
+            </div>`;
+            for (let i = 0; i < data.images.length; i++) {
+                const element = data.images;
+                container.innerHTML += `<div id="articulos"> <img src= "${element[i]}"> </div>`
+                
+            }
+        })
+        .catch(error => {
+            console.error('Error al obtener la información del producto:', error);
+            // Maneja el error de la solicitud
+        });
+} else {
+    // Maneja el caso en el que no se haya seleccionado ningún producto.
+    document.write('Ningún producto seleccionado.');
 }
-imprimirArticulo();
-
