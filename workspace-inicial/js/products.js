@@ -10,6 +10,10 @@ const container = document.getElementById("cargaProductos");
 
 // se cambia productos por autos ya que esto se utiliza en imprimirProductos()
 let autos;                                                               
+function setProdID(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
+}
 
 async function getJsonData(url) {
     try {
@@ -27,9 +31,8 @@ async function imprimirProductos() {
     autos = await getJsonData(DATA_URL);
     const products = autos.products
     products.forEach(auto => {
-        container.innerHTML += `<div id="productos"> <div><ul><h1>${auto.name}</h1>   <p>${auto.description}</p> <p>${auto.currency} ${auto.cost}</p> <p>${auto.soldCount}</p></ul></div> <img src="${auto.image}"></div>`
+        container.innerHTML += `<div id="productos" onclick="setProdID(${auto.id})"> <div><ul><h1>${auto.name}</h1>   <p>${auto.description}</p> <p>${auto.currency} ${auto.cost}</p> <p>${auto.soldCount}</p></ul></div> <img src="${auto.image}"></div>`
     });
-
 }
 imprimirProductos();
 
