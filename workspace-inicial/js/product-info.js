@@ -58,13 +58,13 @@ function rating(score, maxScore = 5){
             for (let i = 0; i < data.length; i++) {
                 const estrellas = rating(data[i].score);
                 container.innerHTML += `
-                <div>
-                <ul id ="articuloComentarios">
-                    <li><p id="user">${data[i].user}</p></li>
-                    <li><p id="stars">${estrellas}</p></li>
-                    <li><p>${data[i].dateTime}</p></li>
-                    <li><p>${data[i].description}</p></li>
-                </ul>
+                <div id ="articuloComentarios"> 
+                <p id="user">${data[i].user}</p> <p>-</p>
+                <p>${data[i].dateTime}</p><p>-</p>
+                <p id="stars">${estrellas}</p> 
+                <div id="descripcion">
+                    <p>${data[i].description}</p>
+                </div>
             </div>`
                 }
                             

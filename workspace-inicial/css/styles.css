@@ -396,28 +396,31 @@ ul{
 }
 
 #articuloComentarios {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 5px;
-  border: rgb(201, 193, 193) solid 1px;
-  margin: 1px;
-  text-align: justify;
+  display: flex;
+  flex-wrap: wrap; /* Para que los elementos se ajusten a una nueva línea si no caben */
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
 }
-#articuloComentarios p {
-  font-size: small;
- line-height: 1; 
-}
-#articulosComentarios li{
-  padding: 0;
-}
-#user{
+
+#user {
   font-weight: bold;
 }
 
-#stars{
+#stars {
   color: orange;
-  size: 100px;
+  }
+
+#dateTime {
+  font-size: small;
+  color: gray;
 }
+#descripcion {
+  margin-top: 10px;
+  flex: 100%; /* Esto hace que #descripcion ocupe todo el ancho disponible */
+}
+
+
 /* //////////////////////////////     ARTICULOS     ////////////////////////////////////// */
 
 /* //////////////////////////BOTONES FILTROS //////////////////////////////// */
