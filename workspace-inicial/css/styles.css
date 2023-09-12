@@ -5,6 +5,10 @@
   font-family: 'Verdana', serif !important;
 }
 
+body {
+  background-color: #f8f9fa;
+  font-family: 'Verdana', serif !important;
+}
 .jumbotron .display-4 {
   font-weight: bold;
 }
@@ -212,7 +216,7 @@ a.custom-card:hover {
   margin: 0;
   padding: 0;
   min-width: 100vw;
-  min-height: 100vh;
+  min-height: 100vh; 
   width: 100%;
   height: 100%;
 }
@@ -387,9 +391,38 @@ a.custom-card:hover {
   padding: 10px;
 }
 
-
 ul{
   list-style: none;
 }
 
+#articuloComentarios {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px;
+  border: rgb(201, 193, 193) solid 1px;
+  margin: 1px;
+  text-align: justify;
+}
+#articuloComentarios p {
+  font-size: small;
+ line-height: 1; 
+}
+#articulosComentarios li{
+  padding: 0;
+}
+#user{
+  font-weight: bold;
+}
+
+#stars{
+  color: orange;
+  size: 100px;
+}
 /* //////////////////////////////     ARTICULOS     ////////////////////////////////////// */
+
+/* //////////////////////////BOTONES FILTROS //////////////////////////////// */
+.botonesFil {
+  background-color: rgb(250, 248, 248);
+  font-family: 'Verdana', serif !important;
+  border: rgb(233, 230, 230) solid 1px;
+}
