@@ -67,7 +67,7 @@ function rating(score, maxScore = 5){
                 </div>
             </div>`
                 }
-                            
+
         })
         .catch(error => {
             console.error('Error al obtener la información del producto:', error);
@@ -87,29 +87,53 @@ const container = document.getElementById("perfil")
 container.innerHTML += logueado
 
 ////////////////AGREGANDO COMENTARIOS/////////////////
-let rangovalor = 0;
-function Comentario() {
-    const stars = document.querySelectorAll(".star");
-    stars.forEach(function(star)
-    {
-        star.addEventListener("click", function (){
-            rangovalor = parseInt(star.getAttribute("data-rating"));
-            actualizarestrellas();
-            document.getElementById("resultado").innerText = "Puntuacion" + rangovalor;
-        });
+//FALTA ARREGLAR EL DISEÑO, Y QUE APAREZCA SOLO EN EL LOCALSTORAGE DEL ID.
+
+
+// Función para mostrar los comentarios en el contenedor
+function mostrarComentarios() {
+    const comentarios = JSON.parse(localStorage.getItem(localStorageKey)) || [];
+    const container = document.getElementById("comentarios-agregados");
+    container.innerHTML = "";
+
+    comentarios.forEach((comentario, index) => {
+      const comentarioElement = document.createElement("div");
+      comentarioElement.id = "articuloComentarios";
+      comentarioElement.innerHTML = `
+        <p id="user">${comentario.usuario}</p> <p>-</p>
+        <p>${comentario.dateTime}</p><p>-</p>
+        <p id="stars">${comentario.puntuacion}</p> 
+        <div id="descripcion">
+          <p>${comentario.comentario}</p>
+        </div>
+      `;
+      container.appendChild(comentarioElement);
     });
 }
+const commentForm = document.getElementById("comment-form");
+const localStorageKey = "comentarios"; 
+const estrellaSelect = document.querySelector("select[name='estrella']");
 
-    function actualizarestrellas()
-    {
-        const estrellas = document.querySelectorAll(".star");
-        estrellas.forEach(function(star){
-            const rango = parseInt(star.getAttribute("data-rating"));
-            if(rango <= rangovalor)
-            {
-                star.classList.add("rated");
-            } else {
-                star.classList.remove("rated");
-            }
-        });
-    }
+commentForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const comentario = document.getElementById("comment").value;
+  const usuario = logueado; 
+  const puntuacion = estrellaSelect.value;
+
+  const nuevoComentario = {
+    usuario: usuario,
+    puntuacion: puntuacion,
+    comentario: comentario,
+    dateTime: new Date().toLocaleString()
+  };
+
+  let comentarios = JSON.parse(localStorage.getItem(localStorageKey)) || [];
+
+  comentarios.push(nuevoComentario);
+
+  localStorage.setItem(localStorageKey, JSON.stringify(comentarios));
+  commentForm.reset();
+  mostrarComentarios();
+});
+mostrarComentarios();

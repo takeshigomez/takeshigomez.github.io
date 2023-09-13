@@ -43,21 +43,28 @@
     </div><br><br>
     <div class="container" id="comentariosProductos">
     </div>
+    <div id="comentarios-agregados">
+    </div>
+    
     <div class="container" id="AgregarComentario">
+    </div>
       <h2>Agregar un comentario y valoración</h2>
     <form id="comment-form">
         <h3 class="Comentario">Comentario</h3>
-        <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
-        
+        <textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br>
         <h3 class="Puntuación">Puntuación</h3>
         <div class="rating">
-            <span class="star" data-rating="1">&#9733;</span>
-            <span class="star" data-rating="2">&#9733;</span>
-            <span class="star" data-rating="3">&#9733;</span>
-            <span class="star" data-rating="4">&#9733;</span>
-            <span class="star" data-rating="5">&#9733;</span>
+          <label for="Puntuacion"></label>
+            <select name="estrella" class="star">
+              <option value="★">★</option>
+              <option value="★★">★★</option>
+              <option value="★★★">★★★</option>
+              <option value="★★★★">★★★★</option>
+              <option value="★★★★★">★★★★★</option>
+            </select>
         </div>
-        <input id="submit" type="submit" value="Agregar comentario">
+        <br>
+        <input id="submit" type="submit" value="Enviar Comentario">
     </form>
     </div>
   </main>
