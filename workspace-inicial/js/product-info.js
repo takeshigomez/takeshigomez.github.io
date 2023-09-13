@@ -28,7 +28,7 @@ if (producto) {
         })
         .catch(error => {
             console.error('Error al obtener la información del producto:', error);
-            // Maneja el error de la solicitud
+
         });
 } else {
     // Maneja el caso en el que no se haya seleccionado ningún producto.
@@ -74,8 +74,7 @@ function rating(score, maxScore = 5){
             // Maneja el error de la solicitud
         });
 } else {
-    // Maneja el caso en el que no se haya seleccionado ningún producto.
-    document.write('Ningún producto seleccionado.');
+    document.write('No selecciono ningun producto.');
 }
 
 
@@ -86,3 +85,31 @@ if (logueado == null) {
 
 const container = document.getElementById("perfil")
 container.innerHTML += logueado
+
+////////////////AGREGANDO COMENTARIOS/////////////////
+let rangovalor = 0;
+function Comentario() {
+    const stars = document.querySelectorAll(".star");
+    stars.forEach(function(star)
+    {
+        star.addEventListener("click", function (){
+            rangovalor = parseInt(star.getAttribute("data-rating"));
+            actualizarestrellas();
+            document.getElementById("resultado").innerText = "Puntuacion" + rangovalor;
+        });
+    });
+}
+
+    function actualizarestrellas()
+    {
+        const estrellas = document.querySelectorAll(".star");
+        estrellas.forEach(function(star){
+            const rango = parseInt(star.getAttribute("data-rating"));
+            if(rango <= rangovalor)
+            {
+                star.classList.add("rated");
+            } else {
+                star.classList.remove("rated");
+            }
+        });
+    }
