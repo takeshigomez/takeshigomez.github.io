@@ -97,7 +97,7 @@ function actualizarLista(filtro = '', precioMin = 0, precioMax = Infinity) {
             producto.cost <= precioMax
         ) {
             container.innerHTML += `
-                <div id="productos">
+                <div id="productos" onclick="setProdID(${producto.id})">
                     <div>
                         <ul>
                             <h1>${producto.name}</h1>
@@ -124,7 +124,7 @@ function cargarTodosLosAutos() {
     contenedor.innerHTML = ''; // Limpiar el contenido actual
     autos.products.forEach((producto) => {
         contenedor.innerHTML += `
-            <div id="productos">
+            <div id="productos" >
                 <div>
                     <ul>
                         <h1>${producto.name}</h1>
