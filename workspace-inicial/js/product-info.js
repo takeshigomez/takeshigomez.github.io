@@ -1,7 +1,7 @@
 let producto = localStorage.getItem("prodID");
 
 
-
+        
 if (producto) {
     // Construye la URL de la API con el identificador del producto
     const ARTICULO_URL = PRODUCT_INFO_URL + producto + EXT_TYPE;
@@ -23,7 +23,7 @@ if (producto) {
             for (let i = 0; i < data.images.length; i++) {
                 const element = data.images;
                 container.innerHTML += `<div id="articulos"> <img src= "${element[i]}"> </div>`
-
+                
             }
         })
         .catch(error => {
@@ -41,12 +41,12 @@ if (producto) {
 
     //Código para estrellas
 
-    function rating(score, maxScore = 5) {
-        const estrellasVacias = maxScore - score;
-        const estrellas = '★'.repeat(score);
-        const sinEstrellas = '☆'.repeat(estrellasVacias);
-        return estrellas + sinEstrellas;
-    }
+function rating(score, maxScore = 5){
+    const estrellasVacias = maxScore - score;
+    const estrellas = '★'.repeat(score);
+    const sinEstrellas = '☆'.repeat(estrellasVacias);
+    return estrellas + sinEstrellas;
+}
 
     // Realiza una solicitud GET a la API
     fetch(COMENTARIO_URL)
@@ -58,18 +58,15 @@ if (producto) {
             for (let i = 0; i < data.length; i++) {
                 const estrellas = rating(data[i].score);
                 container.innerHTML += `
-    
-                <div class ="articuloComentarios">
-                <p class ="user">${data[i].user}</p> <p>-</p>
+                <div id ="articuloComentarios"> 
+                <p id ="user">${data[i].user}</p> <p>-</p>
                 <p>${data[i].dateTime}</p><p>-</p>
-                <p class="stars">${estrellas}</p> 
-                <div class="descripcion">
+                <p id="stars">${estrellas}</p> 
+                <div id="descripcion">
                     <p>${data[i].description}</p>
                 </div>
-                
-                
             </div>`
-            }
+                }
 
         })
         .catch(error => {
@@ -83,7 +80,7 @@ if (producto) {
 
 let logueado = sessionStorage.getItem("user");
 if (logueado == null) {
-    location.href = "./login.html";
+    location.href= "./login.html";
 }
 
 const container = document.getElementById("perfil")
@@ -96,48 +93,47 @@ container.innerHTML += logueado
 // Función para mostrar los comentarios en el contenedor
 function mostrarComentarios() {
     const comentarios = JSON.parse(localStorage.getItem(localStorageKey)) || [];
-    const container = document.getElementById("comentariosProductos");
-    const container2 = document.getElementsByClassName("articuloComentarios");
+    const container = document.getElementById("comentarios-agregados");
     container.innerHTML = "";
 
     comentarios.forEach((comentario, index) => {
-        const comentarioElement = document.createElement("div");
-        comentarioElement.className = "articuloComentarios";
-        comentarioElement.innerHTML = `
-        <p class="user">${comentario.usuario}</p> <p>-</p>
+      const comentarioElement = document.createElement("div");
+      comentarioElement.id = "articuloComentarios";
+      comentarioElement.innerHTML = `
+        <p id="user">${comentario.usuario}</p> <p>-</p>
         <p>${comentario.dateTime}</p><p>-</p>
-        <p class="stars">${comentario.puntuacion}</p> 
-        <div class="descripcion">
+        <p id="stars">${comentario.puntuacion}</p> 
+        <div id="descripcion">
           <p>${comentario.comentario}</p>
         </div>
       `;
-        container.appendChild(comentarioElement);
+      container.appendChild(comentarioElement);
     });
 }
 const commentForm = document.getElementById("comment-form");
-const localStorageKey = "comentarios";
+const localStorageKey = "comentarios"; 
 const estrellaSelect = document.querySelector("select[name='estrella']");
 
 commentForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const comentario = document.getElementById("comment").value;
-    const usuario = logueado;
-    const puntuacion = estrellaSelect.value;
+  const comentario = document.getElementById("comment").value;
+  const usuario = logueado; 
+  const puntuacion = estrellaSelect.value;
 
-    const nuevoComentario = {
-        usuario: usuario,
-        puntuacion: puntuacion,
-        comentario: comentario,
-        dateTime: new Date().toLocaleString()
-    };
+  const nuevoComentario = {
+    usuario: usuario,
+    puntuacion: puntuacion,
+    comentario: comentario,
+    dateTime: new Date().toLocaleString()
+  };
 
-    let comentarios = JSON.parse(localStorage.getItem(localStorageKey)) || [];
+  let comentarios = JSON.parse(localStorage.getItem(localStorageKey)) || [];
 
-    comentarios.push(nuevoComentario);
+  comentarios.push(nuevoComentario);
 
-    localStorage.setItem(localStorageKey, JSON.stringify(comentarios));
-    commentForm.reset();
-    mostrarComentarios();
+  localStorage.setItem(localStorageKey, JSON.stringify(comentarios));
+  commentForm.reset();
+  mostrarComentarios();
 });
 mostrarComentarios();
