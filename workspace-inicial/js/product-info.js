@@ -104,10 +104,10 @@ function mostrarComentarios() {
         const comentarioElement = document.createElement("div");
         comentarioElement.className = "articuloComentarios";
         comentarioElement.innerHTML = `
-        <p id="user">${comentario.usuario}</p> <p>-</p>
+        <p class="user">${comentario.usuario}</p> <p>-</p>
         <p>${comentario.dateTime}</p><p>-</p>
-        <p id="stars">${comentario.puntuacion}</p> 
-        <div id="descripcion">
+        <p class="stars">${comentario.puntuacion}</p> 
+        <div class="descripcion">
           <p>${comentario.comentario}</p>
         </div>
       `;
