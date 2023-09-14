@@ -51,10 +51,10 @@ function rating(score, maxScore = 5){
     // Realiza una solicitud GET a la API
     fetch(COMENTARIO_URL)
         .then(response => response.json())
-        .then(data => {
+        .then(data => { 
             // Maneja la respuesta de la API y muestra la información del producto
             const container = document.getElementById("comentariosProductos");
-            container.innerHTML += `<hr><h4>Comentarios</h4>`
+           
             for (let i = 0; i < data.length; i++) {
                 const estrellas = rating(data[i].score);
                 container.innerHTML += `
@@ -73,7 +73,7 @@ function rating(score, maxScore = 5){
             console.error('Error al obtener la información del producto:', error);
             // Maneja el error de la solicitud
         });
-} else {
+}else {
     document.write('No selecciono ningun producto.');
 }
 
@@ -89,8 +89,6 @@ container.innerHTML += logueado
 ////////////////AGREGANDO COMENTARIOS/////////////////
 //FALTA ARREGLAR EL DISEÑO, Y QUE APAREZCA SOLO EN EL LOCALSTORAGE DEL ID.
 
-
-// Función para mostrar los comentarios en el contenedor
 function mostrarComentarios() {
     const comentarios = JSON.parse(localStorage.getItem(localStorageKey)) || [];
     const container = document.getElementById("comentarios-agregados");
@@ -110,6 +108,7 @@ function mostrarComentarios() {
       container.appendChild(comentarioElement);
     });
 }
+
 const commentForm = document.getElementById("comment-form");
 const localStorageKey = "comentarios"; 
 const estrellaSelect = document.querySelector("select[name='estrella']");
@@ -134,6 +133,7 @@ commentForm.addEventListener("submit", function (e) {
 
   localStorage.setItem(localStorageKey, JSON.stringify(comentarios));
   commentForm.reset();
-  mostrarComentarios();
+  mostrarComentarios(); // Llamar a mostrarComentarios después de agregar el nuevo comentario
 });
-mostrarComentarios();
+
+// Elimina la llamada inicial a mostrarComentarios() aquí

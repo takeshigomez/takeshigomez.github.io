@@ -426,8 +426,21 @@ ul{
   border: 1px solid #ccc;
   padding: 10px;
   margin-bottom: 20px;
+  
 }
-
+#comentarios-agregados{ 
+margin-left: 16%;
+margin-right: 16%;
+}
+#articuloComentarios{
+  max-width: 960px;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid rgb(204, 204, 204);
+  padding: 10px;
+  margin-bottom: 20px;
+ justify-items: center;
+}
 #AgregarComentario h2 {
   font-weight: bold;
 }
