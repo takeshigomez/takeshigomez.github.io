@@ -87,7 +87,6 @@ const container = document.getElementById("perfil")
 container.innerHTML += logueado
 
 ////////////////AGREGANDO COMENTARIOS/////////////////
-//FALTA ARREGLAR EL DISEÑO, Y QUE APAREZCA SOLO EN EL LOCALSTORAGE DEL ID.
 
 function mostrarComentarios() {
     const comentarios = JSON.parse(localStorage.getItem(localStorageKey)) || [];
