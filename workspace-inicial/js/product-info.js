@@ -1,7 +1,7 @@
 let producto = localStorage.getItem("prodID");
+//TRAEMOS EL ID DEL PRODUCTO SELECCIONADO
 
-
-        
+        //TRAEMOS LA API CON EL PRODUCTO CORRESPONDIENTE AL ID
 if (producto) {
     // Construye la URL de la API con el identificador del producto
     const ARTICULO_URL = PRODUCT_INFO_URL + producto + EXT_TYPE;
@@ -10,10 +10,12 @@ if (producto) {
         .then(response => response.json())
         .then(data => {
             // Maneja la respuesta de la API y muestra la información del producto
+            //CREAMOS EL DIV PARA AGREGAR TODOS LOS DATOS DEL PRODCUTO
             const container = document.getElementById("cargaProductos");
             container.innerHTML = `
                 <div>
-                <ul>
+                
+                <ul> 
                 <br><li><h1>${data.name}</h1></li><hr>
                     <li><p>${data.description}</p></li>
                     <li><p>${data.currency} ${data.cost}</p></li>
@@ -40,12 +42,12 @@ if (producto) {
     const COMENTARIO_URL = PRODUCT_INFO_COMMENTS_URL + producto + EXT_TYPE;
 
     //Código para estrellas
-
-function rating(score, maxScore = 5){
+//En esta funcion Nos encargamos de las estrellas aparecen en los comentarios que ya trae la info del producto
+function rating(score, maxScore = 5){ 
     const estrellasVacias = maxScore - score;
     const estrellas = '★'.repeat(score);
     const sinEstrellas = '☆'.repeat(estrellasVacias);
-    return estrellas + sinEstrellas;
+    return estrellas + sinEstrellas; // retorna la sumatoria de las estrella vacias y completas para la puntuacion del comentario
 }
 
     // Realiza una solicitud GET a la API
@@ -54,7 +56,7 @@ function rating(score, maxScore = 5){
         .then(data => { 
             // Maneja la respuesta de la API y muestra la información del producto
             const container = document.getElementById("comentariosProductos");
-           
+           // creamos un for para agragr el comentario completo, con todos los datos del array que corresponde al producto especifco
             for (let i = 0; i < data.length; i++) {
                 const estrellas = rating(data[i].score);
                 container.innerHTML += `
@@ -87,12 +89,13 @@ const container = document.getElementById("perfil")
 container.innerHTML += logueado
 
 ////////////////AGREGANDO COMENTARIOS/////////////////
-
+// CREAMOS UNA FUNCION PARA MOSTRAR LOS COMENTARIOS QUE VAYAMOS AGREGANDO CON EL HTML AGREGADO EN PRODUCT-INFO
 function mostrarComentarios() {
     const comentarios = JSON.parse(localStorage.getItem(localStorageKey)) || [];
+//CREAMOS UNA CONSTANTE PARA EL JSON DEL LOCALSTORAGE QUE CREAMOS Y PODER GUARDAR LOS COMENTARIOS AGREGADOS AHI
     const container = document.getElementById("comentarios-agregados");
     container.innerHTML = "";
-
+//EN ESTE FOREACH VAMOS A ITERAR TODA LA INFORMACION DE CADA COMENTARIO AGREGADO
     comentarios.forEach((comentario, index) => {
       const comentarioElement = document.createElement("div");
       comentarioElement.id = "articuloComentarios";
@@ -107,14 +110,14 @@ function mostrarComentarios() {
       container.appendChild(comentarioElement);
     });
 }
-
+//CONSTANTES PARA ASIGNAR ESTRELLAS AL COMENTARIO NUEVO
 const commentForm = document.getElementById("comment-form");
 const localStorageKey = "comentarios"; 
 const estrellaSelect = document.querySelector("select[name='estrella']");
 
 commentForm.addEventListener("submit", function (e) {
   e.preventDefault();
-
+//creamos este evento submit para a la hora de enviar  se agrega un objeto nuevo con todos los datos del comentario nuevo
   const comentario = document.getElementById("comment").value;
   const usuario = logueado; 
   const puntuacion = estrellaSelect.value;
@@ -127,12 +130,12 @@ commentForm.addEventListener("submit", function (e) {
   };
 
   let comentarios = JSON.parse(localStorage.getItem(localStorageKey)) || [];
-
+// LO PUSHEAMOS AL NUEVO COMENTARIO AL ARRAY DE COMENTARIOS DEL LOCALSTORAGE QUE TRAJIMOS CON LOS OTROS COMENTARIOS Y SUMAMOS
   comentarios.push(nuevoComentario);
 
   localStorage.setItem(localStorageKey, JSON.stringify(comentarios));
   commentForm.reset();
   mostrarComentarios(); // Llamar a mostrarComentarios después de agregar el nuevo comentario
 });
-
+// AGREGARMOS TODO ,RESETEAMOS PARA QUE NO SE REPTITA Y MOSTRAMOS TODOS LOS COMENTARIOS CON LOS NUEVOS
 // Elimina la llamada inicial a mostrarComentarios() aquí
