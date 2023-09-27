@@ -139,3 +139,45 @@ commentForm.addEventListener("submit", function (e) {
 });
 // AGREGARMOS TODO ,RESETEAMOS PARA QUE NO SE REPTITA Y MOSTRAMOS TODOS LOS COMENTARIOS CON LOS NUEVOS
 // Elimina la llamada inicial a mostrarComentarios() aquí
+////////////////////////////////////////////////////////////////////////////////////////////////
+//PRODUCTOS RELACIONADOS SOLO CON EL NOMBRE
+let categoria = localStorage.getItem("catID");
+const DATA_URL = PRODUCTS_URL + categoria + EXT_TYPE;
+const container1 = document.getElementById("productosRelacionados");
+
+async function getJsonData(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Error fetching data from ${url}: ${response.status} ${response.statusText}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        throw new Error(`Ha ocurrido un error: ${error.message}`);
+    }
+}
+
+async function productosRelacionados() {
+    try {
+        const prod = await getJsonData(DATA_URL);
+        const products = prod.products;
+        products.forEach(producto => {
+            container1.innerHTML += `
+                <div>
+                    <h1>${producto.name}</h1>
+                    <img src="${producto.image}">
+                </div>
+            `;
+
+            // Guardar nombre, imagen y categoría en sessionStorage
+            sessionStorage.setItem(`prodName_${producto.id}`, producto.name);
+            sessionStorage.setItem(`prodImage_${producto.id}`, producto.image);
+            sessionStorage.setItem(`prodCategory_${producto.id}`, producto.category);
+        });
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+productosRelacionados();

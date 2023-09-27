@@ -462,3 +462,23 @@ margin-right: 16%;
   font-family: 'Verdana', serif !important;
   border: rgb(233, 230, 230) solid 1px;
 }
+/*///////////////////PRODUCTOS RELACIONADOS////////////////////////*/
+#productosRelacionados {
+  height: 200px;
+  margin: 10px;
+  display: flex;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  background-color: #F4F4F4;
+  justify-content: space-around;
+}
+#productosRelacionados h1{
+  height: 20px;
+  margin: 25px;
+  justify-content: space-between;
+}
+#productosRelacionados img
+{
+  height: 200px;
+  width: 200px;
+  padding: 50px;
+}
