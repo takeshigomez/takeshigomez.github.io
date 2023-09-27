@@ -181,3 +181,43 @@ async function productosRelacionados() {
 
 productosRelacionados();
 
+// Función para mostrar productos relacionados
+async function productosRelacionados() {
+    try {
+        const categoria = localStorage.getItem("catID");
+        const DATA_URL = PRODUCTS_URL + categoria + EXT_TYPE;
+        const container1 = document.getElementById("productosRelacionados");
+
+        const response = await fetch(DATA_URL);
+        if (!response.ok) {
+            throw new Error(`Error fetching data from ${DATA_URL}: ${response.status} ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        const products = data.products;
+
+        // Mostrar los productos relacionados
+        products.forEach(producto => {
+            const productDiv = document.createElement("div");
+            productDiv.innerHTML = `
+                <div>
+                    <h2>${producto.name}</h2>
+                    <img src="${producto.image}" alt="${producto.name}">
+                </div>
+            `;
+
+            // Agregar un evento click al producto relacionado
+            productDiv.addEventListener("click", () => {
+                // Redirige al usuario a la página del producto seleccionado
+                window.location.href = `product-info.html?id=${producto.id}`;
+            });
+
+            container1.appendChild(productDiv);
+        });
+    } catch (error) {
+        console.error('Error al obtener productos relacionados:', error);
+    }
+}
+
+// Llama a la función para mostrar productos relacionados
+productosRelacionados();
