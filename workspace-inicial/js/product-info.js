@@ -163,9 +163,9 @@ async function productosRelacionados() {
         const prod = await getJsonData(DATA_URL);
         const products = prod.products;
         products.forEach(producto => {
-            container1.innerHTML += `
-                <div>
-                    <h1>${producto.name}</h1>
+            container1.innerHTML += `<br>
+                <div class"productosrel" onclick="(${producto.id})>
+                    <h1 id="tituloprod">${producto.name}</h1>
                     <img src="${producto.image}">
                 </div>
             `;
@@ -173,7 +173,6 @@ async function productosRelacionados() {
             // Guardar nombre, imagen y categoría en sessionStorage
             sessionStorage.setItem(`prodName_${producto.id}`, producto.name);
             sessionStorage.setItem(`prodImage_${producto.id}`, producto.image);
-            sessionStorage.setItem(`prodCategory_${producto.id}`, producto.category);
         });
     } catch (error) {
         console.error(error.message);
@@ -181,3 +180,4 @@ async function productosRelacionados() {
 }
 
 productosRelacionados();
+
