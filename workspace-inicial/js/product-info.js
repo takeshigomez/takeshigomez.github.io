@@ -176,7 +176,7 @@ async function productosRelacionados() {
         products.forEach(producto => {
             const productDiv = document.createElement("div");
             productDiv.innerHTML = `
-                <div onclick=${producto.id}>
+                <div onclick="setProdID(${producto.id})">
                     <h2>${producto.name}</h2>
                     <img src="${producto.image}" alt="${producto.name}">
                 </div>
@@ -195,3 +195,7 @@ async function productosRelacionados() {
     }
 }
 productosRelacionados();
+function setProdID(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
+}
