@@ -482,3 +482,17 @@ margin-right: 16%;
   text-align: left;
   padding-bottom: 20px;
 }
+.btn
+{
+  background-color: wheat;
+}
+/* Estilos para el modo oscuro */
+[data-bs-theme="dark"] {
+  background-color: #333; /* Cambia el color de fondo en modo oscuro */
+  color: #fff; /* Cambia el color del texto en modo oscuro */
+}
+/* Estilos para el modo claro */
+[data-bs-theme="light"] {
+  background-color: #fff; /* Cambia el color de fondo en modo claro */
+  color: #333; /* Cambia el color del texto en modo claro */
+}
