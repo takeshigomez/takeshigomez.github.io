@@ -199,3 +199,19 @@ function setProdID(id) {
     localStorage.setItem("prodID", id);
     window.location = "product-info.html"
 }
+/////////////////MODO OSCURO/MODO CLARO//////////////////////
+// Funcionalidad Modo oscuro y Modo claro
+const cambiarTema = () => {
+    const body = document.querySelector("body");
+    const dlIcon = document.querySelector("#dl-icon");
+
+    if (body.getAttribute("data-bs-theme") === "light") {
+        // Cambiar a modo oscuro
+        body.setAttribute("data-bs-theme", "dark");
+        dlIcon.setAttribute("class", "bi bi-sun-fill");
+    } else {
+        // Cambiar a modo claro
+        body.setAttribute("data-bs-theme", "light");
+        dlIcon.setAttribute("class", "bi bi-moon");
+    }
+}
