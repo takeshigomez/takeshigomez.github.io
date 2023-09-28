@@ -157,30 +157,6 @@ async function getJsonData(url) {
         throw new Error(`Ha ocurrido un error: ${error.message}`);
     }
 }
-
-async function productosRelacionados() {
-    try {
-        const prod = await getJsonData(DATA_URL);
-        const products = prod.products;
-        products.forEach(producto => {
-            container1.innerHTML += `<br>
-                <div class"productosrel" onclick="(${producto.id})>
-                    <h1 id="tituloprod">${producto.name}</h1>
-                    <img src="${producto.image}">
-                </div>
-            `;
-
-            // Guardar nombre, imagen y categoría en sessionStorage
-            sessionStorage.setItem(`prodName_${producto.id}`, producto.name);
-            sessionStorage.setItem(`prodImage_${producto.id}`, producto.image);
-        });
-    } catch (error) {
-        console.error(error.message);
-    }
-}
-
-productosRelacionados();
-
 // Función para mostrar productos relacionados
 async function productosRelacionados() {
     try {
@@ -200,7 +176,7 @@ async function productosRelacionados() {
         products.forEach(producto => {
             const productDiv = document.createElement("div");
             productDiv.innerHTML = `
-                <div>
+                <div onclick=${producto.id}>
                     <h2>${producto.name}</h2>
                     <img src="${producto.image}" alt="${producto.name}">
                 </div>
@@ -218,6 +194,4 @@ async function productosRelacionados() {
         console.error('Error al obtener productos relacionados:', error);
     }
 }
-
-// Llama a la función para mostrar productos relacionados
 productosRelacionados();
