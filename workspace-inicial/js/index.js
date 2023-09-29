@@ -36,3 +36,19 @@ const temaClaro = () => {
 const cambiarTema = () => {
     document.querySelector("body").getAttribute("data-bs-theme") === "light"?
     temaOscuro() : temaClaro(); }
+
+
+    ///////////////////// MENU DESPLEGABLE //////////////////////
+    const botonDropdown = document.getElementById("perfil");
+    const menuDropdown = document.getElementById("divDropdown");
+
+
+        /// FUNCIÓN PARA DESPLEGAR
+    const toggleDropdown = function () {
+      menuDropdown.classList.toggle("show"); // toggle modifica la clase
+ };
+   
+ botonDropdown.addEventListener("click", function (e) {
+    e.stopPropagation();
+ toggleDropdown();
+  });

@@ -172,3 +172,20 @@ campoPrecioMax.addEventListener('input', () => {
 });
 ////////////////////
 //Guardamos A LA SESSION IMPRIMIR PRODUCTOS
+
+
+
+ ///////////////////// MENU DESPLEGABLE //////////////////////
+ const botonDropdown = document.getElementById("perfil");
+ const menuDropdown = document.getElementById("divDropdown");
+
+
+     /// FUNCIÓN PARA DESPLEGAR
+ const toggleDropdown = function () {
+   menuDropdown.classList.toggle("show"); // toggle modifica la clase
+};
+
+botonDropdown.addEventListener("click", function (e) {
+ e.stopPropagation();
+toggleDropdown();
+});

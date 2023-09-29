@@ -501,3 +501,66 @@ margin-right: 16%;
   background-color: #fff; /* Cambia el color de fondo en modo claro */
   color: #333; /* Cambia el color del texto en modo claro */
 }
+
+
+
+
+/* ///////////// MENU DESPLEGABLE ///////////////////*/
+
+.perfil {
+  background-color: #1b262c;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: var(--gap);
+  padding: 0.6rem;
+  cursor: pointer;
+  border-radius: var(--radius);
+  border: none;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+
+.divDropdown {
+  position: absolute;
+  width: 250px;
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  margin-top: 0.3rem;
+  background: white;
+  transition: all 0.1s cubic-bezier(0.16, 1, 0.5, 1);
+   
+  transform: translateY(0.5rem);
+  visibility: hidden;
+  opacity: 0;
+}
+
+
+.divDropdown a {
+  display: flex;
+  align-items: center;
+  column-gap: var(--gap);
+  padding: 0.8rem 1rem;
+  text-decoration: none;
+  color: black;
+}
+
+
+.show {
+  transform: translateY(0rem);
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.dropdown a:hover {
+  background-color: var(--color);
+  color: white;
+}
+
+
+.arrow {
+  transform: rotate(180deg);
+  transition: 0.2s ease;
+}
