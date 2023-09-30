@@ -200,7 +200,6 @@ function setProdID(id) {
     window.location = "product-info.html"
 }
 /////////////////MODO OSCURO/MODO CLARO//////////////////////
-// Funcionalidad Modo oscuro y Modo claro
 const cambiarTema = () => {
     const body = document.querySelector("body");
     const dlIcon = document.querySelector("#dl-icon");
