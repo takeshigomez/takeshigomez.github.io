@@ -216,18 +216,19 @@ window.onload = () => {
         dlIcon.setAttribute("class", "bi bi-moon");
     }
 }
-
+// FUNCION PARA CAMBIAR EL TEMA
 const cambiarTema = () => {
     const body = document.querySelector("body");
     const dlIcon = document.querySelector("#dl-icon");
     const temaActual = localStorage.getItem("tema");
 
+    //CONDICION PARA VERIFICAR EL ESTADO ACTUAL DEL TEMA SI ES ASI MANTENER SINO CAMBIARLO(EN EL ELSE)
     if (temaActual === "light" || (temaActual === null && body.getAttribute("data-bs-theme") === "light")) {
 
         body.setAttribute("data-bs-theme", "dark");
         dlIcon.setAttribute("class", "bi bi-sun-fill");
         localStorage.setItem("tema", "dark");
-    } else {
+    } else { 
         body.setAttribute("data-bs-theme", "light");
         dlIcon.setAttribute("class", "bi bi-moon");
         localStorage.setItem("tema", "light");
@@ -242,7 +243,7 @@ const cambiarTema = () => {
  const toggleDropdown = function () {
    menuDropdown.classList.toggle("show"); // toggle modifica la clase
 };
-
+//EVENTO PARA EL CLICK DEL MENU
 botonDropdown.addEventListener("click", function (e) {
  e.stopPropagation();
 toggleDropdown();
