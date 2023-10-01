@@ -176,7 +176,7 @@ async function productosRelacionados() {
         products.forEach(producto => {
             const productDiv = document.createElement("div");
             productDiv.innerHTML = `
-                <div onclick="setProdID(${producto.id})">
+                <div class="imgprod" onclick="setProdID(${producto.id})">
                     <h2>${producto.name}</h2>
                     <img src="${producto.image}" alt="${producto.name}">
                 </div>
