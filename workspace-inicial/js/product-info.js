@@ -208,31 +208,26 @@ window.onload = () => {
     const temaActual = localStorage.getItem("tema");
 
     if (temaActual === "dark" || (temaActual === null && body.getAttribute("data-bs-theme") === "dark")) {
-        // Aplicar el tema oscuro
         body.setAttribute("data-bs-theme", "dark");
         dlIcon.setAttribute("class", "bi bi-sun-fill");
     } else {
-        // Aplicar el tema claro
+
         body.setAttribute("data-bs-theme", "light");
         dlIcon.setAttribute("class", "bi bi-moon");
     }
 }
 
-// Función para cambiar el tema
 const cambiarTema = () => {
     const body = document.querySelector("body");
     const dlIcon = document.querySelector("#dl-icon");
-
-    // Verificar si hay una preferencia de tema almacenada en localStorage
     const temaActual = localStorage.getItem("tema");
 
     if (temaActual === "light" || (temaActual === null && body.getAttribute("data-bs-theme") === "light")) {
-        // Cambiar a modo oscuro y almacenar la preferencia
+
         body.setAttribute("data-bs-theme", "dark");
         dlIcon.setAttribute("class", "bi bi-sun-fill");
         localStorage.setItem("tema", "dark");
     } else {
-        // Cambiar a modo claro y almacenar la preferencia
         body.setAttribute("data-bs-theme", "light");
         dlIcon.setAttribute("class", "bi bi-moon");
         localStorage.setItem("tema", "light");
