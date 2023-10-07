@@ -36,11 +36,41 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+
+    
+    <div class="container"> 
+
+    <div class="col-1  float-left">
+        <h1>Carrito de Compras</h1>
+        <h4>Articulos a comprar</h4>
+        <ul id="product-list"></ul>
     </div>
+    
+      <div class="row">
+      <h2>Tipo de Envío:</h2>
+      
+      <label>
+        <input type="radio" name="shipping" value="estandar"> Premium 2 a 5 dìas (15%)
+      </label>
+      <label>
+        <input type="radio" name="shipping" value="express"> Express 5 a 8 dìas (7%)
+      </label>
+      <label>
+        <input type="radio" name="shipping" value="express"> Standard 12 a 15 dìas (5%)
+      </label>
+    </div>
+    <div form-control.>
+      <h2>Dirección:</h2>
+      <label for="street">Calle:</label>
+      <input type="text" id="street" name="street" required>
+      <label for="number">Número:</label>
+      <input type="text" id="number" name="number" required>
+      <label for="corner">Esquina:</label>
+      <input type="text" id="corner" name="corner" required>
+    </div>
+
+  </div>
+
   </main>
   <footer class="text-muted">
     <div class="container">
