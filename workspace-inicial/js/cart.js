@@ -12,14 +12,15 @@ function loadCartData() {
       .then(data => {
         const productList = document.getElementById('product-list');
   
-        if (data && data.articles) { // Cambio: Acceder a 'articles' en lugar de 'products'
-          data.articles.forEach(article => { // Cambio: Iterar sobre 'articles' en lugar de 'products'
-            const li = document.createElement('li');
-            li.className = 'product-list';
-            li.innerHTML =  `
-            <table class="table">
+        if (data && data.articles) {
+          // Crear una tabla fuera del bucle
+          const table = document.createElement('table');
+          table.className = 'table';
+  
+          // Agregar encabezados de tabla
+          table.innerHTML = `
             <thead>
-              <tr >
+              <tr>
                 <th></th>
                 <th>Nombre</th>
                 <th>Costo</th>
@@ -28,26 +29,30 @@ function loadCartData() {
               </tr>
             </thead>
             <tbody>
-            <tr>
-                <td><img class="img-thumbnail" style="max-width: 100px;" src="${article.image}" alt="${article.name}">
-                              
-                <td><p>${article.name}</p></td></td>
-
-                <td><p class="product-cost"> ${article.currency} ${article.unitCost}</p></td>
-
-                <td><input class="form-control form-control-sm"  type="number" id="quantity" value="${article.count}"</td>
-
-                <td><p class="product-info product-subtotal"> ${article.unitCost * article.count} ${article.currency}</p></td>
-
-                      
             </tbody>
-            </table>
-              
-                  
-                
+          `;
+  
+          const tbody = table.querySelector('tbody');
+  
+          data.articles.forEach(article => {
+            // Crear una fila para cada artículo
+            const tr = document.createElement('tr');
+            tr.setAttribute('data-id', article.id);
+  
+            tr.innerHTML = `
+              <td><img class="img-thumbnail" style="max-width: 100px;" src="${article.image}" alt="${article.name}"></td>
+              <td><p>${article.name}</p></td>
+              <td><p class="product-cost">${article.currency} ${article.unitCost}</p></td>
+              <td><input class="form-control form-control-sm quantity-input" type="number" id="quantity-${article.id}" value="${article.count}"></td>
+              <td><p class="product-info product-subtotal">${article.unitCost * article.count} ${article.currency}</p></td>
             `;
-            productList.appendChild(li);
+  
+            // Agregar la fila a la tabla
+            tbody.appendChild(tr);
           });
+  
+          // Agregar la tabla completa al contenedor
+          productList.appendChild(table);
         } else {
           console.error('El formato de los datos del carrito es incorrecto.');
         }
@@ -56,8 +61,18 @@ function loadCartData() {
         console.error('Error al obtener los datos del carrito de compras:', error);
       });
   }
+
+ //Llamar a la función cuando la página se carga completamente
+window.addEventListener('load', loadCartData);
+
+
+
+
+
+
+
+
+
   
-  // Llamar a la función cuando la página se carga completamente
-  window.addEventListener('load', loadCartData);
   
   
