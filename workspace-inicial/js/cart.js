@@ -16,18 +16,35 @@ function loadCartData() {
           data.articles.forEach(article => { // Cambio: Iterar sobre 'articles' en lugar de 'products'
             const li = document.createElement('li');
             li.className = 'product-list';
-            li.innerHTML = `
-            
-              <img src="${article.image}" alt="${article.name}" class="img-fluid">
-              <div class="info-container">
-                <div class="name-and-price">
-                  <h2>${article.name}</h2>
-                  <h2 class="product-cost">${article.unitCost} ${article.currency}</h2>
-                </div>
-                <label for="quantity">Cantidad:</label>
-                <input type="number" id="quantity" value="${article.count}" disabled> <!-- Cambio: Acceder a 'count' en lugar de 'quantity' -->
-                <h2 class="product-info product-subtotal">Subtotal: ${article.unitCost * article.count} ${article.currency}</h2> <!-- Cambio: Usar 'unitCost' en lugar de 'cost' -->
-              </div>
+            li.innerHTML =  `
+            <table class="table">
+            <thead>
+              <tr >
+                <th></th>
+                <th>Nombre</th>
+                <th>Costo</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><img class="img-thumbnail" style="max-width: 100px;" src="${article.image}" alt="${article.name}">
+                              
+                <td><p>${article.name}</p></td></td>
+
+                <td><p class="product-cost"> ${article.currency} ${article.unitCost}</p></td>
+
+                <td><input class="form-control form-control-sm"  type="number" id="quantity" value="${article.count}"</td>
+
+                <td><p class="product-info product-subtotal"> ${article.unitCost * article.count} ${article.currency}</p></td>
+
+                      
+            </tbody>
+            </table>
+              
+                  
+                
             `;
             productList.appendChild(li);
           });
