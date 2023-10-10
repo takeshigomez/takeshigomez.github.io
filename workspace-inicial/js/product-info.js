@@ -139,7 +139,9 @@ commentForm.addEventListener("submit", function (e) {
 });
 // AGREGARMOS TODO ,RESETEAMOS PARA QUE NO SE REPTITA Y MOSTRAMOS TODOS LOS COMENTARIOS CON LOS NUEVOS
 // Elimina la llamada inicial a mostrarComentarios() aquí
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
+
 //PRODUCTOS RELACIONADOS SOLO CON EL NOMBRE
 let categoria = localStorage.getItem("catID");
 const DATA_URL = PRODUCTS_URL + categoria + EXT_TYPE;
@@ -157,6 +159,10 @@ async function getJsonData(url) {
         throw new Error(`Ha ocurrido un error: ${error.message}`);
     }
 }
+
+
+
+
 // Función para mostrar productos relacionados
 async function productosRelacionados() {
     try {
@@ -199,6 +205,9 @@ function setProdID(id) {
     localStorage.setItem("prodID", id);
     window.location = "product-info.html"
 }
+
+
+
 /////////////////MODO OSCURO/MODO CLARO//////////////////////
 // Verificar si hay una preferencia de tema almacenada en localStorage al cargar la página
 window.onload = () => {
