@@ -18,7 +18,7 @@ function loadCartData() {
         table.className = 'table';
 
         // Agregar encabezados de tabla
-        table.innerHTML = `
+        table.innerHTML = `<div class="container">
           <thead>
             <tr>
               <th></th>
@@ -30,7 +30,8 @@ function loadCartData() {
           </thead>
           <tbody>
           </tbody>
-        `;
+          </div>`;
+        
         const tbody = table.querySelector('tbody');
         data.articles.forEach(article => {
           // Crear una fila para cada artículo

@@ -14,17 +14,17 @@ if (producto) {
             const container = document.getElementById("cargaProductos");
             container.innerHTML = `
                 <div>
-                
+                   
                 <ul> 
-                <br><li><h1>${data.name}</h1></li><hr>
-                    <li><p>${data.description}</p></li>
-                    <li><p>${data.currency} ${data.cost}</p></li>
-                    <li><p>Vendidos: ${data.soldCount}</p></li>
-                </ul>
-            </div>`;
+                        <li><h1>${data.name}</h1></li><hr>
+                        <li><p>${data.description}</p></li>
+                        <li><p>${data.currency} ${data.cost}</p></li>
+                        <li><p>Vendidos: ${data.soldCount}</p></li>
+                    </ul>
+                </div>`;
             for (let i = 0; i < data.images.length; i++) {
                 const element = data.images;
-                container.innerHTML += `<div id="articulos"> <img src= "${element[i]}"> </div>`
+                container.innerHTML += `<div  id="articulos" img-fluid> <img src= "${element[i]}"> </div>`
                 
             }
         })
@@ -60,7 +60,8 @@ function rating(score, maxScore = 5){
             for (let i = 0; i < data.length; i++) {
                 const estrellas = rating(data[i].score);
                 container.innerHTML += `
-                <div id ="articuloComentarios"> 
+                <div class="container" id="articuloComentarios">
+                 
                 <p id ="user">${data[i].user}</p> <p>-</p>
                 <p>${data[i].dateTime}</p><p>-</p>
                 <p id="stars">${estrellas}</p> 
