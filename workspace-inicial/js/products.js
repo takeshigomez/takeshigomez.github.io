@@ -31,13 +31,14 @@ async function imprimirProductos() {
     autos = await getJsonData(DATA_URL);
     const products = autos.products
     products.forEach(auto => {
-        container.innerHTML += `<div class="container" id="productos" onclick="setProdID(${auto.id})"> 
-        <ul><h1>${auto.name}</h1>   
-        <p>${auto.description}</p>
-        <p>${auto.currency} ${auto.cost}</p>
-         <p>${auto.soldCount}</p></ul> 
-         <img src="${auto.image}" class="img-fluid"></div>`
-    });
+
+container.innerHTML += `<div id="productos" class="row" onclick="setProdID(${auto.id})"> 
+<div class="col-md-6"><ul><h1>${auto.name}</h1>   
+<p>${auto.description}</p>
+<p>${auto.currency} ${auto.cost}</p>
+ <p>${auto.soldCount}</p></ul> 
+ <img src="${auto.image}" class="img-fluid"></div>`
+});
 }
 imprimirProductos();
 
