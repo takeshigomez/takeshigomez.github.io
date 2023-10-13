@@ -1,6 +1,5 @@
 let producto = localStorage.getItem("prodID");
 //TRAEMOS EL ID DEL PRODUCTO SELECCIONADO
-
         //TRAEMOS LA API CON EL PRODUCTO CORRESPONDIENTE AL ID
 if (producto) {
     // Construye la URL de la API con el identificador del producto
@@ -27,6 +26,7 @@ if (producto) {
                 container.innerHTML += `<div  id="articulos" img-fluid> <img src= "${element[i]}"> </div>`
                 
             }
+
         })
         .catch(error => {
             console.error('Error al obtener la información del producto:', error);
