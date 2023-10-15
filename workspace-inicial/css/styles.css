@@ -570,3 +570,17 @@ margin-right: 16%;
 #productosRelacionadostitulos{
   text-align: center;
 }
+#productosRelacionados {
+  margin:auto ;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  scroll-snap-type: x mandatory;
+  overflow-x: scroll;
+  }
+  #productosRelacionados img {
+    flex: 0 0 100%;
+    width: 500px;
+    object-fit: cover;
+    scroll-snap-align: center;
+  }
