@@ -161,9 +161,6 @@ async function getJsonData(url) {
     }
 }
 
-
-
-
 // Función para mostrar productos relacionados
 async function productosRelacionados() {
     try {
@@ -207,70 +204,71 @@ function setProdID(id) {
     window.location = "product-info.html"
 }
 
-/*////////////////////CARRUSEL (CHEQUEAR)/////////////////
-document.addEventListener("DOMContentLoaded", () => {
-    getJSONData(URL).then(function (resultObj) {
-      if (resultObj.status === "ok") {
-        let product = resultObj.data;
-        var primero = true;
-        product.relatedProducts.forEach((related) => {
+
+// ////////////////////CARRUSEL MELANIE(CHEQUEAR)/////////////////
+// document.addEventListener("DOMContentLoaded", () => {
+//     getJSONData(URL).then(function (resultObj) {
+//       if (resultObj.status === "ok") {
+//         let product = resultObj.data;
+//         let primero = true;
+//         product.relatedProducts.forEach((related) => {
           
-          let div = document.createElement("div"); // <div></div>
-          if (primero)
-          {
-            div.classList.add("carousel-item"); // <div class="carousel-item"></div>
-            div.classList.add("active"); // <div class="carousel-item active"></div>
-          }
-          else div.classList.add("carousel-item"); // <div class="carousel-item"></div>
+//           let div = document.createElement("div"); // <div></div>
+//           if (primero)
+//           {
+//             div.classList.add("carousel-item"); // <div class="carousel-item"></div>
+//             div.classList.add("active"); // <div class="carousel-item active"></div>
+//           }
+//           else div.classList.add("carousel-item"); // <div class="carousel-item"></div>
                   
-          let carta = document.createElement("div");
+//           let carta = document.createElement("div");
           
-          carta.classList.add("container-sm");
-          carta.classList.add("d-flex");
-          carta.classList.add("justify-content-center");
+//           carta.classList.add("container-sm");
+//           carta.classList.add("d-flex");
+//           carta.classList.add("justify-content-center");
   
   
-          let carta2 = document.createElement("div");
-          carta2.setAttribute("style", "width: 18rem;");
-          carta2.classList.add("card");
-          carta2.classList.add("card-pointer");
-          carta2.innerHTML = `<img src="${related.image}" class="card-img-top">
-          <div class="card-body">
-          <h5 class="card-title">${related.name}</h5>
-          </div>
-          `;
+//           let carta2 = document.createElement("div");
+//           carta2.setAttribute("style", "width: 18rem;");
+//           carta2.classList.add("card");
+//           carta2.classList.add("card-pointer");
+//           carta2.innerHTML = `<img src="${related.image}" class="card-img-top">
+//           <div class="card-body">
+//           <h5 class="card-title">${related.name}</h5>
+//           </div>
+//           `;
   
-          carta2.addEventListener("click", () => {
-            let selectedProductID = related.id;
-            localStorage.setItem("ValorID", selectedProductID);
-            window.location.href = "product-info.html";
-          });
+//           carta2.addEventListener("click", () => {
+//             let selectedProductID = related.id;
+//             localStorage.setItem("ValorID", selectedProductID);
+//             window.location.href = "product-info.html";
+//           });
   
-          carta.appendChild(carta2);
-          div.appendChild(carta);
+//           carta.appendChild(carta2);
+//           div.appendChild(carta);
   
   
-          /* lo de arriba es lo mismo que esto sin el evento
-          var carta = "" ;
-          if (primero)
-            carta += `<div class="carousel-item active">`;
-          else carta += `<div class="carousel-item">`;
-  
-          carta += `<div class ="container-sm d-flex justify-content-center">`;
-  
-          carta += `<div class="card" style="width: 18rem;">
-          <img src="${related.image}" class="card-img-top">
-          <div class="card-body">
-          <h5 class="card-title">${related.name}</h5>
-          </div>
-          </div>
-          </div>
-          </div>`
           
-          primero = false;
-          document.getElementById("relacionadosDiv").appendChild(div);
-        }); 
-      } */
+//           carta = "" 
+//           if (primero)
+//             carta += `<div class="carousel-item active">`;
+//           else carta += `<div class="carousel-item">`;
+  
+//           carta += `<div class ="container-sm d-flex justify-content-center">`;
+  
+//           carta += `<div class="card" style="width: 18rem;">
+//           <img src="${related.image}" class="card-img-top">
+//           <div class="card-body">
+//           <h5 class="card-title">${related.name}</h5>
+//           </div>
+//           </div>
+//           </div>
+//           </div>`
+          
+//           primero = false;
+//           document.getElementById("relacionadosDiv").appendChild(div);
+//         }); 
+//       } 
 
 
 /////////////////MODO OSCURO/MODO CLARO//////////////////////
