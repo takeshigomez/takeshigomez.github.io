@@ -160,13 +160,13 @@ async function getJsonData(url) {
         throw new Error(`Ha ocurrido un error: ${error.message}`);
     }
 }
-
-// Función para mostrar productos relacionados
+/////////////////////////////carousel/////////////////////////////
 async function productosRelacionados() {
     try {
         const categoria = localStorage.getItem("catID");
         const DATA_URL = PRODUCTS_URL + categoria + EXT_TYPE;
-        const container1 = document.getElementById("productosRelacionados");
+        
+        const contenedorR = document.querySelector(".carousel-inner");
 
         const response = await fetch(DATA_URL);
         if (!response.ok) {
@@ -178,97 +178,47 @@ async function productosRelacionados() {
 
         // Mostrar los productos relacionados
         products.forEach(producto => {
-            const productDiv = document.createElement("div");
-            productDiv.innerHTML = `
-                <div class="imgprod" onclick="setProdID(${producto.id})">
-                    <h2>${producto.name}</h2>
-                    <img src="${producto.image}" alt="${producto.name}">
-                </div>
-            `;
+            contenedorR.innerHTML += `
+            <div class="carousel-item" onclick="setProdID(${producto.id})">
+                <img src="${producto.image}"  class="d-block w-100" alt="${producto.name}">
+            </div>`;
 
-            // Agregar un evento click al producto relacionado
-            productDiv.addEventListener("click", () => {
-                // Redirige al usuario a la página del producto seleccionado
-                window.location.href = `product-info.html?id=${producto.id}`;
-            });
+            ;})
 
-            container1.appendChild(productDiv);
-        });
+        //Creacion de botones para desplazarse en el slider
+        contenedorR.innerHTML += `
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselRelacionados" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselRelacionados" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>`;
+
+    // Clase active para que se muestre la primer imagen
+      let primerImg = contenedorR.querySelector("div:first-child");
+      primerImg.className = "carousel-item active";
+
+      // Agregar un evento click al producto relacionado
+      let img = document.querySelector(".d-block w-100")
+      img.addEventListener("click", () => {
+        // Redirige al usuario a la página del producto seleccionado
+        window.location.href = `product-info.html?id=${producto.id}`;
+    })
     } catch (error) {
         console.error('Error al obtener productos relacionados:', error);
     }
+
 }
 productosRelacionados();
 function setProdID(id) {
     localStorage.setItem("prodID", id);
     window.location = "product-info.html"
 }
+//////////////////////////////////////////////////////////
 
 
-// ////////////////////CARRUSEL MELANIE(CHEQUEAR)/////////////////
-// document.addEventListener("DOMContentLoaded", () => {
-//     getJSONData(URL).then(function (resultObj) {
-//       if (resultObj.status === "ok") {
-//         let product = resultObj.data;
-//         let primero = true;
-//         product.relatedProducts.forEach((related) => {
-          
-//           let div = document.createElement("div"); // <div></div>
-//           if (primero)
-//           {
-//             div.classList.add("carousel-item"); // <div class="carousel-item"></div>
-//             div.classList.add("active"); // <div class="carousel-item active"></div>
-//           }
-//           else div.classList.add("carousel-item"); // <div class="carousel-item"></div>
-                  
-//           let carta = document.createElement("div");
-          
-//           carta.classList.add("container-sm");
-//           carta.classList.add("d-flex");
-//           carta.classList.add("justify-content-center");
-  
-  
-//           let carta2 = document.createElement("div");
-//           carta2.setAttribute("style", "width: 18rem;");
-//           carta2.classList.add("card");
-//           carta2.classList.add("card-pointer");
-//           carta2.innerHTML = `<img src="${related.image}" class="card-img-top">
-//           <div class="card-body">
-//           <h5 class="card-title">${related.name}</h5>
-//           </div>
-//           `;
-  
-//           carta2.addEventListener("click", () => {
-//             let selectedProductID = related.id;
-//             localStorage.setItem("ValorID", selectedProductID);
-//             window.location.href = "product-info.html";
-//           });
-  
-//           carta.appendChild(carta2);
-//           div.appendChild(carta);
-  
-  
-          
-//           carta = "" 
-//           if (primero)
-//             carta += `<div class="carousel-item active">`;
-//           else carta += `<div class="carousel-item">`;
-  
-//           carta += `<div class ="container-sm d-flex justify-content-center">`;
-  
-//           carta += `<div class="card" style="width: 18rem;">
-//           <img src="${related.image}" class="card-img-top">
-//           <div class="card-body">
-//           <h5 class="card-title">${related.name}</h5>
-//           </div>
-//           </div>
-//           </div>
-//           </div>`
-          
-//           primero = false;
-//           document.getElementById("relacionadosDiv").appendChild(div);
-//         }); 
-//       } 
 
 
 /////////////////MODO OSCURO/MODO CLARO//////////////////////
