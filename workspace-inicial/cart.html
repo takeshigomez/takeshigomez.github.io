@@ -49,14 +49,15 @@
         <h4 class="pb-3">Tipo de Envío:</h4>
 
         <label>
-          <input type="radio" name="shipping" value="estandar"> Premium 2 a 5 dìas (15%)
+          <input type="radio" name="shipping" value="0.15"> Premium 2 a 5 días (15%)
         </label>
         <label>
-          <input type="radio" name="shipping" value="express"> Express 5 a 8 dìas (7%)
+          <input type="radio" name="shipping" value="0.07"> Express 5 a 8 días (7%)
         </label>
         <label>
-          <input type="radio" name="shipping" value="express"> Standard 12 a 15 dìas (5%)
+          <input type="radio" name="shipping" value="0.05"> Standard 12 a 15 días (5%)
         </label>
+
       </div>
       <div>
         <div>
@@ -69,10 +70,66 @@
           <input class="col-2" type="text" id="corner" name="corner" required>
         </div>
 
+    <div class="row">
+      <div class="col-6">
+        <h4>Resumen de Compra</h4>
+        <p>Subtotal General: <span id="subtotal-general">$0.00 USD</span></p>
+        <p>Costo de Envío: <span id="costo-envio">$0.00 USD</span></p>
+        <p>Total a Pagar: <span id="total-pagar">$0.00 USD</span></p>
       </div>
     </div>
 
+ <!-- Botón para abrir el modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">Seleccionar Forma de Pago</button>
 
+<!-- Modal para la forma de pago -->
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="paymentModalLabel">FORMA DE PAGO</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="creditCard" checked>
+          <label class="form-check-label" for="creditCard">Tarjeta de Crédito</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="paymentMethod" id="bankTransfer" value="bankTransfer">
+          <label class="form-check-label" for="bankTransfer">Transferencia Bancaria</label>
+        </div>
+
+        <div id="creditCardForm" style="display: block;">
+          <!-- TARJETA DE CREDITO -->
+          <div class="mb-3">
+            <label for="cardNumber" class="form-label">Número de Tarjeta</label>
+            <input type="text" class="form-control" id="cardNumber" placeholder="Número de Tarjeta">
+          </div>
+          <div class="mb-3">
+            <label for="securityCode" class="form-label">Código de Seguridad</label>
+            <input type="text" class="form-control" id="securityCode" placeholder="Código de Seguridad">
+          </div>
+          <div class="mb-3">
+            <label for="expirationDate" class="form-label">Fecha de Vencimiento (MM/AA)</label>
+            <input type="text" class="form-control" id="expirationDate" placeholder="MM/AA">
+          </div>
+        </div>
+        <div id="bankTransferForm" style="display: none;">
+          <!-- TRANSFERENCIA BANCARIA -->
+          <div class="mb-3">
+            <label for="accountNumber" class="form-label">Número de Cuenta (Transferencia Bancaria)</label>
+            <input type="text" class="form-control" id="accountNumber" placeholder="Número de Cuenta">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="confirmPayment">Confirmar Pago</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   </main>
   <footer class="text-muted">
