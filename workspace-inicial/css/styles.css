@@ -575,3 +575,9 @@ margin-right: 16%;
 width: 50%; 
 }
 
+
+
+#confirmationMessage {
+    color: green;
+    font-weight: bold;
+}
