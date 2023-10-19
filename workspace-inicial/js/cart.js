@@ -137,9 +137,131 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+  
+  //Cada 4 numeros en el numero de la tarjeta agrega un espacio y -
+  document.getElementById("cardNumber").addEventListener("input", function () {
+    // Elimina cualquier caracter que no sea un dígito, guión o espacio en blanco
+    let cardNumber = this.value.replace(/[^\d\s-]/g, '');
+  
+    // Elimina los guiones y espacios en blanco actuales
+    cardNumber = cardNumber.replace(/[\s-]/g, '');
+  
+    // Agrega un guión después de cada grupo de 4 dígitos
+    cardNumber = cardNumber.replace(/(\d{4})/g, '$1 - ');
+  
+    // Elimina los caracteres adicionales al final
+    cardNumber = cardNumber.slice(0, 25);
+  
+    // Actualiza el valor del campo con el número de tarjeta formateado
+    this.value = cardNumber;
+  });
+
+  //Fecha de vencimiento para lograr que quede por ejemplo 12/2024
+  const expirationDateInput = document.getElementById('expirationDate');
+
+expirationDateInput.addEventListener('input', function () {
+  // Obtén el valor actual del campo
+  let value = this.value;
+
+  // Elimina caracteres no numéricos y limita la longitud
+  value = value.replace(/\D/g, '').slice(0, 6);
+
+  // Formatea la fecha como MM/AAAA
+  if (value.length >= 2) {
+    value = value.substring(0, 2) + '/' + value.substring(2);
+  }
+
+  // Actualiza el valor del campo
+  this.value = value;
+});
+
+//CCV codigo de seguridad solo números y máximo 3 digitos
+const codigoSeguridad = document.getElementById('securityCode');
+
+codigoSeguridad.addEventListener('input', function () {
+  // Obtén el valor actual del campo
+  let value = this.value;
+
+  // Elimina caracteres no numéricos y limita la longitud
+  value = value.replace(/\D/g, '').slice(0, 3);
+
+  // Actualiza el valor del campo
+  this.value = value;
+});
+
+
+  
+  
+  
+
+
+  
 
   // Event listener para abrir el modal
   confirmPaymentButton.addEventListener('click', function () {
     paymentModal.show();
   });
+
+  //PAUTA 3 - ENTREGA 6
+  // Obtén una referencia al botón de confirmación
+const confirmPurchaseButton = document.getElementById('confirmPurchaseButton');
+
+// Agrega un event listener para el botón de confirmación
+confirmPurchaseButton.addEventListener('click', function () {
+  // Realiza las validaciones aquí
+  const shippingRadios = document.querySelectorAll('input[type="radio"][name="shipping"]');
+  const paymentMethodRadios = document.querySelectorAll('input[name="paymentMethod"]');
+  const cardNumber = document.getElementById('cardNumber').value;
+  const expirationDate = document.getElementById('expirationDate').value;
+  const securityCode = document.getElementById('securityCode').value;
+
+  // Validación: Campos calle, número y esquina no pueden estar vacíos
+  const street = document.getElementById('street').value;
+  const number = document.getElementById('number').value;
+  const corner = document.getElementById('corner').value;
+  if (street.trim() === '' || number.trim() === '' || corner.trim() === '') {
+    alert('Los campos calle, número y esquina no pueden estar vacíos.');
+    return; // Detener la confirmación de compra
+  }
+
+  // Validación: Debe estar seleccionada la forma de envío
+  const selectedShipping = document.querySelector('input[type="radio"][name="shipping"]:checked');
+  if (!selectedShipping) {
+    alert('Debes seleccionar una forma de envío.');
+    return;
+  }
+
+  // Validación: La cantidad para cada artículo debe estar definida y ser mayor a 0
+  const quantityInputs = document.querySelectorAll('.quantity-input');
+  for (const quantityInput of quantityInputs) {
+    const quantity = parseInt(quantityInput.value, 10);
+    if (isNaN(quantity) || quantity <= 0) {
+      alert('La cantidad para cada artículo debe ser mayor a 0.');
+      return;
+    }
+  }
+
+  // Validación: Debe haberse seleccionado una forma de pago
+  const selectedPaymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+  if (!selectedPaymentMethod) {
+    alert('Debes seleccionar una forma de pago.');
+    return;
+  }
+
+  // Validación: Los campos, para la forma de pago seleccionada, no pueden estar vacíos
+  if (selectedPaymentMethod.value === 'creditCard') {
+    if (cardNumber.trim() === '' || expirationDate.trim() === '' || securityCode.trim() === '') {
+      alert('Debes completar todos los campos de la tarjeta de crédito.');
+      return;
+    }
+  } else if (selectedPaymentMethod.value === 'bankTransfer') {
+    // Agregar validaciones para la transferencia bancaria si es necesario
+  }
+
+  // Si todas las validaciones pasan, puedes confirmar la compra
+  alert('Compra confirmada. Gracias por tu compra.');
+  // Aquí puedes enviar la información de la compra al servidor, etc.
+});
+
+  
 });
