@@ -240,7 +240,8 @@ confirmPaymentButton.addEventListener('click', function () {
   confirmationMessage.style.display = 'block';
 
   // Verifica si todos los campos obligatorios están completos
-  if (document.getElementById('name').checkValidity() && 
+  if (document.getElementById('accountNumber') ||
+    document.getElementById('name').checkValidity() && 
       document.getElementById('cardNumber').checkValidity() && 
       document.getElementById('expirationDate').checkValidity() && 
       document.getElementById('securityCode').checkValidity()) {
@@ -268,6 +269,7 @@ confirmPurchaseButton.addEventListener('click', function () {
   const cardNumber = document.getElementById('cardNumber').value;
   const expirationDate = document.getElementById('expirationDate').value;
   const securityCode = document.getElementById('securityCode').value;
+  const bankNumber  = document.getElementById('accountNumber').value;
 
   // Validación: Campos calle, número y esquina no pueden estar vacíos
   const street = document.getElementById('street').value;
@@ -303,7 +305,7 @@ confirmPurchaseButton.addEventListener('click', function () {
 if (
   (selectedPaymentMethod.value === 'creditCard' &&
     (cardNumber.trim() === '' || expirationDate.trim() === '' || securityCode.trim() === '')) ||
-  (selectedPaymentMethod.value === 'bankTransfer' && accountNumber.trim() === '')
+  (selectedPaymentMethod.value === 'bankTransfer' && bankNumber.trim() === '')
 ) {
   alert('Debes elegir un medio de pago y completar todos los campos obligatorios.');
   return;
