@@ -1,4 +1,5 @@
 let producto = localStorage.getItem("prodID");
+let prodObj = null;
 //TRAEMOS EL ID DEL PRODUCTO SELECCIONADO
         //TRAEMOS LA API CON EL PRODUCTO CORRESPONDIENTE AL ID
 if (producto) {
@@ -8,6 +9,7 @@ if (producto) {
     fetch(ARTICULO_URL)
         .then(response => response.json())
         .then(data => {
+            prodObj = data;
             // Maneja la respuesta de la API y muestra la información del producto
             //CREAMOS EL DIV PARA AGREGAR TODOS LOS DATOS DEL PRODCUTO
             const container = document.getElementById("cargaProductos");
@@ -270,3 +272,27 @@ botonDropdown.addEventListener("click", function (e) {
  e.stopPropagation();
 toggleDropdown();
 });
+
+function agregarAlCarrito() {
+    // const prd = {
+    //   id: producto.id,
+    //   name: p.name, 
+    //   cost: data.cost, 
+    //   count: 1, 
+    // };
+  
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  
+    const productoExistente = carrito.find((item) => item.id === prodObj.id);
+  
+    if (productoExistente) {
+      productoExistente.cantidad++;
+    } else {
+      carrito.push(prodObj);
+    }
+  
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    alert("Producto agregado al carrito");
+  
+    
+  }

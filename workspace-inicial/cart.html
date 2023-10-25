@@ -83,13 +83,13 @@
 
 
 
-
+<h2>Forma de Pago</h2>
 <!-- Botón para abrir el modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">Seleccionar Forma de Pago</button><br><br>
+<button type="button" class="btn btn-link ps-0" data-bs-toggle="modal" data-bs-target="#paymentModal">Seleccionar</button><br><br>
 
 <!-- PAUTA 3-ENTREGA 6-->
 <!-- Agrega un botón para confirmar la compra -->
-<button id="confirmPurchaseButton" class="btn btn-success">Finalizar Compra</button>
+<button id="confirmPurchaseButton" class="btn btn-outline-success">Finalizar Compra</button>
 
 
 <!-- Modal para la forma de pago -->
@@ -120,7 +120,7 @@
             </div>
            <div class="mb-3">
             <label for="cardNumber" class="form-label">Número de Tarjeta</label>
-            <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="Número de Tarjeta" maxlength="25" required>
+            <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="Número de Tarjeta"  required>
            </div>
           
           <div class="mb-3">
@@ -173,6 +173,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   
   
 </body>

@@ -8,6 +8,10 @@ function loadCartData() {
       const productList = document.getElementById('product-list');
 
       if (data && data.articles) {
+        if (!localStorage.getItem("carrito")){
+          localStorage.setItem("carrito", JSON.stringify(data.articles));
+        }
+       
         // Crear una tabla fuera del bucle
         const table = document.createElement('table');
         table.className = 'table';
@@ -28,7 +32,9 @@ function loadCartData() {
           </div>`;
 
         const tbody = table.querySelector('tbody');
-        data.articles.forEach(article => {
+        const articles =  JSON.parse(localStorage.getItem("carrito"));
+        console.log(articles);
+        articles.forEach(article => {
           // Crear una fila para cada artículo
           const tr = document.createElement('tr');
           tr.setAttribute('data-id', article.id);
@@ -172,13 +178,13 @@ document.addEventListener('DOMContentLoaded', function () {
     let cardNumber = this.value.replace(/[^\d\s-]/g, '');
   
     // Elimina los guiones y espacios en blanco actuales
-    cardNumber = cardNumber.replace(/[\s-]/g, '');
+    cardNumber = cardNumber.replace(/[\s-]/g,'');
   
     // Agrega un guión después de cada grupo de 4 dígitos
-    cardNumber = cardNumber.replace(/(\d{4})/g, '$1 - ');
+    cardNumber = cardNumber.replace(/(\d{4})/g, '$1-');
   
     // Elimina los caracteres adicionales al final
-    cardNumber = cardNumber.slice(0, 25);
+    cardNumber = cardNumber.slice(0,19);
   
     // Actualiza el valor del campo con el número de tarjeta formateado
     this.value = cardNumber;
@@ -233,27 +239,35 @@ codigoSeguridad.addEventListener('input', function () {
 
 
 
-// Event listener para abrir el modal
+/// Event listener para abrir el modal
 confirmPaymentButton.addEventListener('click', function () {
   // Muestra el mensaje de confirmación
   const confirmationMessage = document.getElementById('confirmationMessage');
   confirmationMessage.style.display = 'block';
 
-  // Verifica si todos los campos obligatorios están completos
-  if (document.getElementById('accountNumber') ||
-    document.getElementById('name').checkValidity() && 
-      document.getElementById('cardNumber').checkValidity() && 
-      document.getElementById('expirationDate').checkValidity() && 
-      document.getElementById('securityCode').checkValidity()) {
-      // Si todos los campos obligatorios están completos, muestra el mensaje de confirmación
-      confirmationMessage.textContent = '¡Confirmado!';
-      // Cierra el modal después de 8 segundos
-      setTimeout(function () {
-        paymentModal.hide();
-      }, 1000); // Cierra el modal después de 1 segundos
+  // Verifica si todos los campos obligatorios están completos y son válidos
+  const accountNumber = document.getElementById('accountNumber').value;
+  const name = document.getElementById('name').value;
+  const cardNumber = document.getElementById('cardNumber').value;
+  const expirationDate = document.getElementById('expirationDate').value;
+  const securityCode = document.getElementById('securityCode').value;
+
+  if (
+    accountNumber.length > 6 || 
+    name.length > 6 &&
+    cardNumber.length >= 16 &&
+    expirationDate.length === 5 &&
+    securityCode.length === 3
+  ) {
+    // Si todos los campos obligatorios están completos y son válidos, muestra el mensaje de confirmación
+    confirmationMessage.textContent = '¡Confirmado!';
+    // Cierra el modal después de 1 segundo
+    setTimeout(function () {
+      paymentModal.hide();
+    }, 1000);
   } else {
-      // Si falta algún campo obligatorio, muestra un mensaje de error o realiza la acción que desees.
-      alert('Por favor, completa todos los campos obligatorios.');
+    // Si falta algún campo obligatorio o algún campo no es válido, muestra un mensaje de error o realiza la acción que desees.
+    alert('Por favor, completa todos los campos obligatorios y asegúrate de que los campos válidos sean correctos.');
   }
 });
 
@@ -312,6 +326,7 @@ if (
 }
 
   // Si todas las validaciones pasan, puedes confirmar la compra
+  
   alert('Compra confirmada. Gracias por tu compra.');
   // Aquí puedes enviar la información de la compra al servidor, etc.
 });

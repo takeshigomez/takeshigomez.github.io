@@ -581,3 +581,21 @@ width: 50%;
     color: green;
     font-weight: bold;
 }
+
+
+
+/* Estilo para alertas de éxito */
+.alert-success {
+  background-color: #4CAF50; /* Fondo verde */
+  color: white; /* Texto blanco */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Estilo para alertas de error */
+.alert-error {
+  background-color: #FF5733; /* Fondo rojo */
+  color: white; /* Texto blanco */
+  padding: 10px;
+  border-radius: 5px;
+}
