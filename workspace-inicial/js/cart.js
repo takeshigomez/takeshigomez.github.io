@@ -260,14 +260,14 @@ confirmPaymentButton.addEventListener('click', function () {
     securityCode.length === 3
   ) {
     // Si todos los campos obligatorios están completos y son válidos, muestra el mensaje de confirmación
-    confirmationMessage.textContent = '¡Confirmado!';
+    Swal.fire('¡Confirmado!', 'datos ingresados correctamente', 'success');
     // Cierra el modal después de 1 segundo
     setTimeout(function () {
       paymentModal.hide();
     }, 1000);
   } else {
     // Si falta algún campo obligatorio o algún campo no es válido, muestra un mensaje de error o realiza la acción que desees.
-    alert('Por favor, completa todos los campos obligatorios y asegúrate de que los campos válidos sean correctos.');
+    Swal.fire('Error','Por favor, completa todos los campos obligatorios y asegúrate de que los campos válidos sean correctos.', 'error');
   }
 });
 
@@ -290,14 +290,14 @@ confirmPurchaseButton.addEventListener('click', function () {
   const number = document.getElementById('number').value;
   const corner = document.getElementById('corner').value;
   if (street.trim() === '' || number.trim() === '' || corner.trim() === '') {
-    alert('Los campos calle, número y esquina no pueden estar vacíos.');
+    Swal.fire('Error', 'los campos calle, número y esquina no pueden estar vacíos.', 'error');
     return; // Detener la confirmación de compra
   }
 
   // Validación: Debe estar seleccionada la forma de envío
   const selectedShipping = document.querySelector('input[type="radio"][name="shipping"]:checked');
   if (!selectedShipping) {
-    alert('Debes seleccionar una forma de envío.');
+    Swal.fire('Error', 'Debes seleccionar una forma de envío.', 'error');
     return;
   }
 
@@ -306,7 +306,7 @@ confirmPurchaseButton.addEventListener('click', function () {
   for (const quantityInput of quantityInputs) {
     const quantity = parseInt(quantityInput.value, 10);
     if (isNaN(quantity) || quantity <= 0) {
-      alert('La cantidad para cada artículo debe ser mayor a 0.');
+      Swal.fire('Error','La cantidad para cada artículo debe ser mayor a 0.', 'error');
       return;
     }
   }
@@ -321,13 +321,13 @@ if (
     (cardNumber.trim() === '' || expirationDate.trim() === '' || securityCode.trim() === '')) ||
   (selectedPaymentMethod.value === 'bankTransfer' && bankNumber.trim() === '')
 ) {
-  alert('Debes elegir un medio de pago y completar todos los campos obligatorios.');
+  Swal.fire('Error', 'Debes elegir un medio de pago y completar todos los campos obligatorios.', 'error');
   return;
 }
 
   // Si todas las validaciones pasan, puedes confirmar la compra
   
-  alert('Compra confirmada. Gracias por tu compra.');
+  Swal.fire('Compra confirmada', '¡Gracias por tu compra!', 'success');
   // Aquí puedes enviar la información de la compra al servidor, etc.
 });
 
