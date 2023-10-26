@@ -45,6 +45,7 @@ function loadCartData() {
             <td><p class="product-cost">${article.currency} ${article.unitCost}</p></td>
             <td><input class="form-control form-control-sm quantity-input" type="number" value="${article.count}"></td>
             <td><p class="product-info product-subtotal">${article.currency} ${article.unitCost * article.count}</p></td>
+            <button> Eliminar </botton>
           `;
 
           // Agregar la fila a la tabla
@@ -65,6 +66,7 @@ function loadCartData() {
             <td><p class="product-cost">${article.currency} ${article.cost}</p></td>
             <td><input class="form-control form-control-sm quantity-input" type="number" value="${1}"></td>
             <td><p class="product-info product-subtotal">${article.currency} ${article.cost * article.soldCount}</p></td>
+            <button> Eliminar </botton>
           `;
 
           // Agregar la fila a la tabla
