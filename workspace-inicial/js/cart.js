@@ -1,21 +1,22 @@
 // Función para cargar y mostrar los datos del carrito
 function loadCartData() {
   const cartUrl = 'https://japceibal.github.io/emercado-api/user_cart/25801.json';
-
+  
   fetch(cartUrl)
     .then(response => response.json())
     .then(data => {
       const productList = document.getElementById('product-list');
-
+     
       if (data && data.articles) {
-        if (!localStorage.getItem("carrito")){
-          localStorage.setItem("carrito", JSON.stringify(data.articles));
-        }
-       
         // Crear una tabla fuera del bucle
         const table = document.createElement('table');
         table.className = 'table';
 
+
+        let compras = JSON.parse(localStorage.getItem("carrito"));
+        console.log(compras)
+        
+        
         // Agregar encabezados de tabla
         table.innerHTML = `<div class="container">
           <thead>
@@ -32,9 +33,9 @@ function loadCartData() {
           </div>`;
 
         const tbody = table.querySelector('tbody');
-        const articles =  JSON.parse(localStorage.getItem("carrito"));
-        console.log(articles);
-        articles.forEach(article => {
+        // const articles =  JSON.parse(localStorage.getItem("carrito"));
+        // console.log(articles);
+        data.articles.forEach(article => {
           // Crear una fila para cada artículo
           const tr = document.createElement('tr');
           tr.setAttribute('data-id', article.id);
@@ -45,13 +46,38 @@ function loadCartData() {
             <td><input class="form-control form-control-sm quantity-input" type="number" value="${article.count}"></td>
             <td><p class="product-info product-subtotal">${article.currency} ${article.unitCost * article.count}</p></td>
           `;
+
           // Agregar la fila a la tabla
           tbody.appendChild(tr);
 
           // Agregar event listener para actualizar el subtotal en tiempo real al modificar la cantidad
           const quantityInput = tr.querySelector('.quantity-input');
           quantityInput.addEventListener('input', updateProductSubtotal);
-        });
+          
+        });        
+          compras.forEach(article => {
+          // Crear una fila para cada artículo
+          const tr = document.createElement('tr');
+          tr.setAttribute('data-id', article.id);
+          tr.innerHTML = `
+            <td><img class="img-thumbnail" style="max-width: 100px;" src="${article.images[0]}" alt="${article.name}"></td>
+            <td><p>${article.name}</p></td>
+            <td><p class="product-cost">${article.currency} ${article.cost}</p></td>
+            <td><input class="form-control form-control-sm quantity-input" type="number" value="${1}"></td>
+            <td><p class="product-info product-subtotal">${article.currency} ${article.cost * article.soldCount}</p></td>
+          `;
+
+          // Agregar la fila a la tabla
+          tbody.appendChild(tr);
+
+          // Agregar event listener para actualizar el subtotal en tiempo real al modificar la cantidad
+          const quantityInput = tr.querySelector('.quantity-input');
+          quantityInput.addEventListener('input', updateProductSubtotal);
+          
+        })    
+
+
+        
 
         // Agregar la tabla completa al contenedor
         productList.appendChild(table);
@@ -70,7 +96,7 @@ function loadCartData() {
     .catch(error => {
       console.error('Error al obtener los datos del carrito de compras:', error);
     });
-
+    
   // Función para actualizar el subtotal del producto en tiempo real
   function updateProductSubtotal() {
     const tr = this.closest('tr'); // Obtener la fila que contiene el campo de cantidad

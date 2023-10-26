@@ -274,12 +274,6 @@ toggleDropdown();
 });
 
 function agregarAlCarrito() {
-    // const prd = {
-    //   id: producto.id,
-    //   name: p.name, 
-    //   cost: data.cost, 
-    //   count: 1, 
-    // };
   
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
   
