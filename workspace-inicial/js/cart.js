@@ -40,12 +40,14 @@ function loadCartData() {
           const tr = document.createElement('tr');
           tr.setAttribute('data-id', article.id);
           tr.innerHTML = `
+            <div class="container">
             <td><img class="img-thumbnail" style="max-width: 100px;" src="${article.image}" alt="${article.name}"></td>
             <td><p>${article.name}</p></td>
             <td><p class="product-cost">${article.currency} ${article.unitCost}</p></td>
             <td><input class="form-control form-control-sm quantity-input" type="number" value="${1}"></td>
             <td><p class="product-info product-subtotal">${article.currency} ${article.unitCost }</p></td>
-            <button class="btnEliminar"> Eliminar </botton>
+            </div>
+            <button class="btnEliminar"><i class="bi bi-trash-fill"></i></botton>
           `;
 
           // Agregar la fila a la tabla
@@ -61,12 +63,14 @@ function loadCartData() {
           const tr = document.createElement('tr');
           tr.setAttribute('data-id', article.id);
           tr.innerHTML = `
+          <div class="container">
             <td><img class="img-thumbnail" style="max-width: 100px;" src="${article.images[0]}" alt="${article.name}"></td>
             <td><p>${article.name}</p></td>
             <td><p class="product-cost">${article.currency} ${article.cost}</p></td>
             <td><input class="form-control form-control-sm quantity-input" type="number" value="${1}"></td>
             <td><p class="product-info product-subtotal">${article.currency} ${article.cost}</p></td>
-            <button class="btnEliminar"> Eliminar </botton>
+            </div>
+            <button class="btnEliminar"><i class="bi bi-trash-fill"></i></botton>           
           `;
 
           // Agregar la fila a la tabla
@@ -366,12 +370,14 @@ if (
 });
 
 // ELIMINAR ELEMENTOS DEL CARRITO
+
 productList.addEventListener("click", (e) => {
   if (e.target.classList.contains("btnEliminar")) {
     const tarjeta = e.target.closest("tr");
 
     if (tarjeta) {
       tarjeta.remove(); // Elimina visualmente el elemento de la tabla
+      
 
       // Obtén el ID del artículo que se va a eliminar (asumiendo que hay un atributo "data-id" en la fila)
       const articleId = tarjeta.getAttribute('data-id');

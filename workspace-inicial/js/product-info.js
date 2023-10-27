@@ -286,7 +286,6 @@ function agregarAlCarrito() {
     }
   
     localStorage.setItem("carrito", JSON.stringify(carrito));
-    alert("Producto agregado al carrito");
-  
+    Swal.fire('¡Excelente elección!','Producto agregado al carrito', 'success');  
     
   }
