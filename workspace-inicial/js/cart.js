@@ -28,7 +28,7 @@ function loadCartData() {
               <th>Subtotal</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class= "tb">
           </tbody>
           </div>`;
 
@@ -77,10 +77,6 @@ function loadCartData() {
           quantityInput.addEventListener('input', updateProductSubtotal);
           
         })    
-
-
-        
-
         // Agregar la tabla completa al contenedor
         productList.appendChild(table);
 
@@ -369,6 +365,29 @@ if (
   // Aquí puedes enviar la información de la compra al servidor, etc.
 });
 
-  // ELIMINAR ELEMENTOS DEL CARRITO
+// ELIMINAR ELEMENTOS DEL CARRITO
+productList.addEventListener("click", (e) => {
+  if (e.target.classList.contains("btnEliminar")) {
+    const tarjeta = e.target.closest("tr");
+
+    if (tarjeta) {
+      tarjeta.remove(); // Elimina visualmente el elemento de la tabla
+
+      // Obtén el ID del artículo que se va a eliminar (asumiendo que hay un atributo "data-id" en la fila)
+      const articleId = tarjeta.getAttribute('data-id');
+
+      // Obtiene el carrito del almacenamiento local
+      let compras = JSON.parse(localStorage.getItem("carrito"));
+
+      // Filtra los artículos en el carrito para eliminar el que corresponde al ID
+      compras = compras.filter(article => article.id !== articleId);
+
+      // Actualiza el carrito en el almacenamiento local
+      localStorage.setItem("carrito", JSON.stringify(compras));
+
+      updateSummary("tb"); // Pasar el ID de la tabla como argumento
+    }
+  }
+});
 
 });
