@@ -43,9 +43,9 @@ function loadCartData() {
             <td><img class="img-thumbnail" style="max-width: 100px;" src="${article.image}" alt="${article.name}"></td>
             <td><p>${article.name}</p></td>
             <td><p class="product-cost">${article.currency} ${article.unitCost}</p></td>
-            <td><input class="form-control form-control-sm quantity-input" type="number" value="${article.count}"></td>
-            <td><p class="product-info product-subtotal">${article.currency} ${article.unitCost * article.count}</p></td>
-            <button> Eliminar </botton>
+            <td><input class="form-control form-control-sm quantity-input" type="number" value="${1}"></td>
+            <td><p class="product-info product-subtotal">${article.currency} ${article.unitCost }</p></td>
+            <button class="btnEliminar"> Eliminar </botton>
           `;
 
           // Agregar la fila a la tabla
@@ -65,8 +65,8 @@ function loadCartData() {
             <td><p>${article.name}</p></td>
             <td><p class="product-cost">${article.currency} ${article.cost}</p></td>
             <td><input class="form-control form-control-sm quantity-input" type="number" value="${1}"></td>
-            <td><p class="product-info product-subtotal">${article.currency} ${article.cost * article.soldCount}</p></td>
-            <button> Eliminar </botton>
+            <td><p class="product-info product-subtotal">${article.currency} ${article.cost}</p></td>
+            <button class="btnEliminar"> Eliminar </botton>
           `;
 
           // Agregar la fila a la tabla
@@ -116,7 +116,17 @@ function loadCartData() {
       updateSummary(); // Actualizar el resumen de compra
     }
   }
-
+// ELIMINAR ELEMENTOS DEL CARRITO
+let productList = document.getElementById('product-list');
+productList.addEventListener("click", (e) => {
+  if (e.target.classList.contains("btnEliminar")) {
+      const tarjeta = e.target.closest("tr");
+      
+      if (tarjeta) {
+        tarjeta.remove();
+        updateSummary()
+}}
+});
   // Función para calcular el resumen de la compra
   function updateSummary() {
     const subtotalElements = document.querySelectorAll('.product-subtotal');
@@ -359,5 +369,6 @@ if (
   // Aquí puedes enviar la información de la compra al servidor, etc.
 });
 
-  
+  // ELIMINAR ELEMENTOS DEL CARRITO
+
 });
