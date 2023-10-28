@@ -273,6 +273,8 @@ botonDropdown.addEventListener("click", function (e) {
 toggleDropdown();
 });
 
+
+//ENTREGA 5- DESAFIATE
 function agregarAlCarrito() {
   
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];

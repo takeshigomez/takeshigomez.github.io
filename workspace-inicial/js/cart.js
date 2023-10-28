@@ -116,7 +116,8 @@ function loadCartData() {
       updateSummary(); // Actualizar el resumen de compra
     }
   }
-// ELIMINAR ELEMENTOS DEL CARRITO
+
+//ENTREGA 6- DESAFIATE- ELIMINAR ELEMENTOS DEL CARRITO
 let productList = document.getElementById('product-list');
 productList.addEventListener("click", (e) => {
   if (e.target.classList.contains("btnEliminar")) {
@@ -127,6 +128,7 @@ productList.addEventListener("click", (e) => {
         updateSummary()
 }}
 });
+//ENTREGA 6 - PAUTA 1
   // Función para calcular el resumen de la compra
   function updateSummary() {
     const subtotalElements = document.querySelectorAll('.product-subtotal');
@@ -369,6 +371,7 @@ if (
   // Aquí puedes enviar la información de la compra al servidor, etc.
 });
 
+// ENTREGA 6 - DESAFIATE
 // ELIMINAR ELEMENTOS DEL CARRITO
 
 productList.addEventListener("click", (e) => {
