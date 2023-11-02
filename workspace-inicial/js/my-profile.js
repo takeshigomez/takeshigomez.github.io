@@ -1,24 +1,25 @@
+// Verificar si el usuario está logueado
 let logueado = sessionStorage.getItem("user");
 if (logueado == null) {
-    location.href= "./login.html";
+    location.href = "./login.html";
 }
-let email = document.getElementById("email")
-email = sessionStorage.getItem("user");
 
-const container = document.getElementById("perfil")
-container.innerHTML += logueado
+// Obtener el elemento de correo electrónico y completarlo
+let emailField = document.getElementById("email");
+if (emailField) {
+    emailField.value = logueado;
+}
 
- ///////////////////// MENU DESPLEGABLE //////////////////////
- const botonDropdown = document.getElementById("perfil");
- const menuDropdown = document.getElementById("divDropdown");
+// Resto de tu código para el menú desplegable y otras funcionalidades
+const botonDropdown = document.getElementById("perfil");
+const menuDropdown = document.getElementById("divDropdown");
 
-
-     /// FUNCIÓN PARA DESPLEGAR
- const toggleDropdown = function () {
-   menuDropdown.classList.toggle("show"); // toggle modifica la clase
+// FUNCIÓN PARA DESPLEGAR
+const toggleDropdown = function () {
+  menuDropdown.classList.toggle("show"); // toggle modifica la clase
 };
 
 botonDropdown.addEventListener("click", function (e) {
- e.stopPropagation();
-toggleDropdown();
+  e.stopPropagation();
+  toggleDropdown();
 });
