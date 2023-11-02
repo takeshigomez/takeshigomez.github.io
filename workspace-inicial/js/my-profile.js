@@ -2,6 +2,8 @@ let logueado = sessionStorage.getItem("user");
 if (logueado == null) {
     location.href= "./login.html";
 }
+let email = document.getElementById("email")
+email = sessionStorage.getItem("user");
 
 const container = document.getElementById("perfil")
 container.innerHTML += logueado
