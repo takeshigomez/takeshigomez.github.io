@@ -18,10 +18,15 @@ function cargarPerfilDesdeLocalStorage() {
 
         // Llenar los campos con los datos guardados
         document.getElementById("nombre").value = perfilUsuario.nombre;
+        document.getElementById("segundoNombre").value = perfilUsuario.segundoNombre;
         document.getElementById("apellido").value = perfilUsuario.apellido;
+        document.getElementById("segundoApellido").value = perfilUsuario.segundoApellido;
+        document.getElementById("email").value = perfilUsuario.email;
         document.getElementById("telefonoContacto").value = perfilUsuario.telefonoContacto;
 
-        // Otros campos pueden llenarse de la misma manera
+        // Imagen de perfil
+        document.getElementById("imagenPerfil").src = perfilUsuario.imagenPerfil;
+
     }
 }
 
@@ -32,9 +37,12 @@ cargarPerfilDesdeLocalStorage();
 function validarYGuardar() {
     // Obtener los valores de los campos
     let nombre = document.getElementById("nombre").value;
+    let segundoNombre = document.getElementById("segundoNombre").value;
     let apellido = document.getElementById("apellido").value;
+    let segundoApellido = document.getElementById("segundoApellido").value;
     let email = document.getElementById("email").value;
     let telefonoContacto = document.getElementById("telefonoContacto").value;
+    let imagenPerfil = document.getElementById("imagenPerfil").src;
 
     // Validar que los campos obligatorios (*) estén completos
     if (nombre.trim() === "" || apellido.trim() === "") {
@@ -48,16 +56,18 @@ function validarYGuardar() {
         return; // No se puede guardar si el correo electrónico es inválido
     }
 
-    // Resto de la validación si es necesario
 
     // Si todos los campos obligatorios están completos y el correo electrónico es válido, guardar los datos en el almacenamiento local
     let perfilUsuario = {
         nombre: nombre,
+        segundoNombre: segundoNombre,
         apellido: apellido,
+        segundoApellido: segundoApellido,
         email: email,
+        imagenPerfil: imagenPerfil,
         telefonoContacto: telefonoContacto,
-        // Agregar otros campos si es necesario
     };
+
 
     // Convertir el objeto a una cadena JSON y guardar en el almacenamiento local
     localStorage.setItem("perfilUsuario", JSON.stringify(perfilUsuario));
@@ -76,3 +86,15 @@ function validarEmail(email) {
 // Event listener para el botón "Guardar datos"
 document.querySelector(".btn-primary").addEventListener("click", validarYGuardar);
 
+document.getElementById("archivo").addEventListener("change", function() {
+    const imagenPerfil = document.getElementById("imagenPerfil");
+    const fileInput = this; // "this" se refiere al input de archivo
+    if (fileInput.files && fileInput.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        // Establecer el atributo src de la imagen con la URL de la imagen cargada
+        imagenPerfil.src = e.target.result;
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    }
+  });
