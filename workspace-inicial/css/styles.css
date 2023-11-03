@@ -243,12 +243,7 @@ a.custom-card:hover {
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.568);
   color: rgb(233, 224, 224);
 
-  
-  /*
-  -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
-  -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
-  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);*/
-  
+    
   border-radius: 3px 3px 3px 3px;
   -moz-border-radius: 3px 3px 3px 3px;
   -webkit-border-radius: 3px 3px 3px 3px;
@@ -453,23 +448,23 @@ margin-right: 16%;
 }
 /* Estilos para el botón */
 .btn.rounded-fill {
-  background-color: #3700ff; /* Color de fondo predeterminado */
-  color: #fff; /* Color de texto predeterminado */
+  background-color: #3700ff; 
+  color: #fff;
 }
 
 /* Estilos para el ícono dentro del botón */
 .btn i {
-  font-size: 24px; /* Tamaño del ícono */
+  font-size: 24px; 
 }
 /* Estilos para el modo oscuro */
 [data-bs-theme="dark"] {
-  background-color: #333; /* Cambia el color de fondo en modo oscuro */
-  color: #fff; /* Cambia el color del texto en modo oscuro */
+  background-color: #333;
+  color: #fff;
 }
 /* Estilos para el modo claro */
 [data-bs-theme="light"] {
-  background-color: #fff; /* Cambia el color de fondo en modo claro */
-  color: #333; /* Cambia el color del texto en modo claro */
+  background-color: #fff; 
+  color: #333; 
 }
 
 
@@ -546,33 +541,3 @@ width: 50%;
 
 
 
-#confirmationMessage {
-    color: green;
-    font-weight: bold;
-}
-
-
-
-/* Estilo para alertas de éxito */
-.alert-success {
-  background-color: #4CAF50; /* Fondo verde */
-  color: white; /* Texto blanco */
-  padding: 10px;
-  border-radius: 5px;
-}
-
-/* Estilo para alertas de error */
-.alert-error {
-  background-color: #FF5733; /* Fondo rojo */
-  color: white; /* Texto blanco */
-  padding: 10px;
-  border-radius: 5px;
-}
-
-
-.btnEliminar {
-  border: 0;
-    background-color: transparent;
-    color: var(--clr-red);
-    cursor: pointer;
-}
