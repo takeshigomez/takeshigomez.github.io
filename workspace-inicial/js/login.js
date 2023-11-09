@@ -16,6 +16,4 @@ document.addEventListener("DOMContentLoaded", function(){
       alert("INGRESE EL NOMBRE DE USUARIO ");
      }
      })
-        // Almacenar el nombre en sessionStorage para usarlo en home.js/ check
-        // Redirigir a la página principal / check
     });
